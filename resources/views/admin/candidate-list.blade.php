@@ -115,7 +115,7 @@
 						<td>
 														
 							<label class="toggle-switch toggle-switch-success">
-								<input type="checkbox" id="candidate_del_{{ $candidate['id']}}" @if($candidate['is_deleted']=='1') checked @endif onclick="candidate_delete_fun({{ $candidate['id']}})">
+								<input type="checkbox" id="candidate_del_{{ $candidate['id']}}" @if($candidate['candidate_is_deleted']=='1') checked @endif onclick="candidate_delete_fun({{ $candidate['id']}})">
 								<span class="toggle-slider round"></span>
 							</label> 
 					  
@@ -178,7 +178,8 @@
 				var candidate_del_status=0;
 			}
   
-			console.log(candidate_del_status);
+			console.log(candidate_id+'/'+candidate_del_status);
+
 			
 			$.ajax({
 				url: "{{url('admin/delete-candidate')}}", 
@@ -189,7 +190,7 @@
 					_token: '{{csrf_token()}}'
 				},
 				success:function(result){
-					
+					console.log(result); 
 					swal("Poof! Candidate has been deleted!", {
 						  icon: "success",
 					});		

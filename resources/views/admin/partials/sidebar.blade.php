@@ -225,13 +225,13 @@
 		</a>
 		<div class="collapse" id="ui-jobs">
 		  <ul class="nav flex-column sub-menu">
-			<li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Jobs List</a></li>
-			<li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Job Category</a></li>
-			<li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Job Domain</a></li>
-			<li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Notice Periods</a></li>
-			<li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Fees charges reasons</a></li>
-			<li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Working days</a></li>
-			<li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Work experiance</a></li>
+			<li class="nav-item"> <a class="nav-link" href="{{ url('/admin/all-job-lists') }}">Jobs List</a></li>
+			<li class="nav-item"> <a class="nav-link" href="{{ url('/admin/manage-job-categories') }}">Job Category</a></li>
+			<li class="nav-item"> <a class="nav-link" href="{{ url('/admin/manage-job-domains') }}">Job Domain</a></li>
+			<li class="nav-item"> <a class="nav-link" href="{{ url('/admin/manage-notice-periods') }}">Notice Periods</a></li>
+			<li class="nav-item"> <a class="nav-link" href="{{ url('/admin/manage-fee-charge-reasons') }}">Fees charges reasons</a></li>
+			<li class="nav-item"> <a class="nav-link" href="{{ url('/admin/manage-working-days') }}">Working days</a></li>
+			<li class="nav-item"> <a class="nav-link" href="{{ url('/admin/manage-work-experiance') }}">Work experiance</a></li>
 		  </ul>
 		</div>
 	  </li>
@@ -279,7 +279,7 @@
 		</a>
 		<div class="collapse" id="form-website">
 		  <ul class="nav flex-column sub-menu">
-			<li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">About Us</a></li>
+			<li class="nav-item"><a class="nav-link" href="{{ url('/admin/about-us') }}">About Us</a></li>
 			<li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Contact Us</a></li>
 			<li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Blog List</a></li>
 			<li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Blog Category</a></li>

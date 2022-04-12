@@ -3,7 +3,7 @@
 @section("title")
 
 	<!-- Required meta tags -->
-	<title>Candidate Details | {{ env('MY_SITE_NAME') }}</title>
+	<title>Employer Details | {{ env('MY_SITE_NAME') }}</title>
 	
 	<style>
 		.form-group {
@@ -27,36 +27,45 @@
                   <h4 class="card-title">Personal Information</h4>
                   
 					<div class="form-group">
-						<label for="Name"><strong>Name : </strong> {{ $candidates['name']}}</label>
+						<label for="Name"><strong>Company Name : </strong> {{ $employer_detailss['company_name']}}</label>
 					</div>
 					
 					<div class="form-group">
-						<label for="Name"><strong>Email : </strong> {{ $candidates['email']}}</label>
+						<label for="Name"><strong>Email : </strong> {{ $employer_detailss['email']}}</label>
+					</div>
+
+					<div class="form-group">
+						<label for="Name"><strong>Company Website: </strong> {{ $employer_detailss['company_website']}}</label>
+					</div>
+
+					<div class="form-group">
+						<label for="Name"><strong>Company Views: </strong> {{ $employer_detailss['company_views']}}</label>
 					</div>
 					
 					<div class="form-group">
-						<label for="Name"><strong>Mobile Number : </strong> {{ $candidates['mobile_number']}}</label>
+						<label for="Name"><strong>Company Phone : </strong> {{ $employer_detailss['company_phone']}}</label>
+					</div>
+
+					<div class="form-group">
+						<label for="Name"><strong>Mobile Number : </strong> {{ $employer_detailss['mobile_number']}}</label>
 					</div>
 					
 					<div class="form-group">
-						<label for="Name"><strong>Alternate Number : </strong> {{ $candidates['alternate_number']}}</label>
+						<label for="Name"><strong>Alternate Number : </strong> {{ $employer_detailss['alternate_number']}}</label>
 					</div>
 					
 					<div class="form-group">
-						<label for="Name"><strong>Permanent Address : </strong> {{ $candidates['permanent_address']}}</label>
+						<label for="Name"><strong>Company Address : </strong> {{ $employer_detailss['company_address']}}</label>
 					</div>
 					
 					<div class="form-group">
-						<label for="Name"><strong>Current Address : </strong> {{ $candidates['current_address']}}</label>
+						<label for="Name"><strong>State Name : </strong> {{ $employer_detailss['state_name']}}</label>
 					</div>
 					
 					<div class="form-group">
-						<label for="Name"><strong>State Name : </strong> {{ $candidates['state_name']}}</label>
+						<label for="Name"><strong>City Name : </strong> {{ $employer_detailss['city_name']}}</label>
 					</div>
-					
-					<div class="form-group">
-						<label for="Name"><strong>City Name : </strong> {{ $candidates['city_name']}}</label>
-					</div>
+
 
                 </div>
               </div>
@@ -65,40 +74,28 @@
 			<div class="col-lg-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Other Information</h4>
+                  <h4 class="card-title">About Company</h4>
                   
 					<div class="form-group">
-						<label for="Name"><strong>Describe Job Profile : </strong> {{ $candidates['describe_job_profile']}}</label>
+						<label for="Name"><strong>About Company : </strong> {{ $employer_detailss['about_company']}}</label>
 					</div>
 					
 					<div class="form-group">
-						<label for="Name"><strong>Skills : </strong> {{ $candidates['skills']}}</label>
+						<label for="Name"><strong>Company Domain : </strong> {{ $employer_detailss['company_domains_name']}}</label>
 					</div>
 					
 					<div class="form-group">
-						<label for="Name"><strong>Notice Period : </strong> {{ $candidates['notice_period']}}</label>
+						<label for="Name"><strong>Company Established Year : </strong> {{ $employer_detailss['company_established_year']}}</label>
 					</div>
 					
 					<div class="form-group">
-						<label for="Name"><strong>Last CTC : </strong> {{ $candidates['last_ctc']}}</label>
-					</div>
-										
-					<div class="form-group">
-						<label for="Name">
-							<strong>Resume : </strong> 
-							
-							@if(!empty($candidates['resume_file'])) 
-								<a href="{{ url($candidates['resume_file'])}}" download title="Click here for download resume.">Download Resume</a>
-							@endif
-							
-						</label>
+						<label for="Name"><strong>Team Member : </strong> {{ $employer_detailss['team_member']}}</label>
 					</div>
 					
 					<div class="form-group">
-						<label for="Name"><strong>Profile Image : </strong> 
-						@if(!empty($candidates['image'])) 
-							<br><img src="{{ url($candidates['image'])}}" style="width:120px; height:auto;"/>
-							<br><a href="{{ url($candidates['image'])}}" download title="Click here for download image.">Download Profile Image</a>
+						<label for="Name"><strong>Company Logo : </strong> 
+						@if(!empty($employer_detailss['company_logo'])) 
+							<br><img src="{{ url($employer_detailss['company_logo'])}}" style="width:120px; height:auto;"/>
 						@endif
 						
 						</label>
@@ -111,32 +108,74 @@
 			<div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Work Experience</h4>
-                  
-				    <div class="form-group">
-						<label for="Name"><strong>Experience: </strong> {{ $candidates['work_experience']}}</label>
-					</div>
-					
+                  <h4 class="card-title">Social Media</h4>		
 					
 					<div class="form-group">
-					@if(count($candidate_work_experiences)>0)
+						<label for="Name"><strong>Facebook: </strong><a href="{{ $employer_detailss['facebook_links']}}" target="_blank"> {{ $employer_detailss['facebook_links']}}</a></label>
+					</div>
+
+					<div class="form-group">
+						<label for="Name"><strong>Twitter: </strong><a href="{{ $employer_detailss['twitter_links']}}" target="_blank"> {{ $employer_detailss['twitter_links']}}</a></label>
+					</div>
+
+					<div class="form-group">
+						<label for="Name"><strong>Skype: </strong><a href="{{ $employer_detailss['skype_links']}}" target="_blank"> {{ $employer_detailss['skype_links']}}</a></label>
+					</div>
+
+					<div class="form-group">
+						<label for="Name"><strong>Pinterest: </strong><a href="{{ $employer_detailss['pinterest_links']}}" target="_blank"> {{ $employer_detailss['pinterest_links']}}</a></label>
+					</div>
+					
+                </div>
+              </div>
+            </div>		
+
+
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Job Post ({{$total_jobs}})</h4>
+                  
+				  <div class="form-group">
+
+				  	<div style="float: left; width:100%; overflow-x:scroll;">
+
+					@if($total_jobs>0)
 						<table class="table table-striped project-orders-table" id="my_datatable">
 							<thead style="color:#656565; font-weight:normal;" >
-								<th style="line-height:15px; width:20%; border-bottom:1px solid #c9c8c8!important;">Designation</th>
-								<th style="line-height:15px; width:30%; border-bottom:1px solid #c9c8c8!important;">Company Name</th>
-								<th style="line-height:15px; width:10%; border-bottom:1px solid #c9c8c8!important;">Date From</th>
-								<th style="line-height:15px; width:10%; border-bottom:1px solid #c9c8c8!important;">Date To </th>
-								<th style="line-height:15px; width:30%; border-bottom:1px solid #c9c8c8!important;">Describe Role</th>
+								<th style="line-height:15px; width:20%; border-bottom:1px solid #c9c8c8!important;">Job Title</th>
+								<th style="line-height:15px; width:30%; border-bottom:1px solid #c9c8c8!important;">Salary</th>
+								<th style="line-height:15px; width:10%; border-bottom:1px solid #c9c8c8!important;">Opening</th>
+								<th style="line-height:15px; width:10%; border-bottom:1px solid #c9c8c8!important;">Job Location</th>
+								<th style="line-height:15px; width:30%; border-bottom:1px solid #c9c8c8!important;">City</th>
+								<th style="line-height:15px; width:30%; border-bottom:1px solid #c9c8c8!important;">Job Types</th>
+								<th style="line-height:15px; width:30%; border-bottom:1px solid #c9c8c8!important;">Working Days</th>
+								<th style="line-height:15px; width:30%; border-bottom:1px solid #c9c8c8!important;">Experience</th>
+								<th style="line-height:15px; width:30%; border-bottom:1px solid #c9c8c8!important;">Skills</th>
+								<th style="line-height:15px; width:30%; border-bottom:1px solid #c9c8c8!important;">Action</th>
 							</thead>
 							
 							<tbody>
-							@foreach($candidate_work_experiences as $candidate_work_experience)
+							@foreach($job_lists as $job_list)
 								<tr>
-									<td>{{ $candidate_work_experience['designation_name']}}</td>  
-									<td>{{ $candidate_work_experience['organization_name']}}</td>  
-									<td>{{ $candidate_work_experience['date_from']}}</td> 
-									<td>{{ $candidate_work_experience['date_to']}}</td> 
-									<td>{{ $candidate_work_experience['describe_role']}}</td>   
+									<td>{{ $job_list['job_title']}}</td>  
+									<td>{{ $job_list['salary']}}</td>  
+									<td>{{ $job_list['no_of_opening']}}</td> 
+									<td>
+										@foreach($job_locations as $job_location)
+											@if($job_location['id']==$job_list['job_location_id'])
+												{{ $job_location['name'] }}
+											@endif
+										@endforeach
+									</td> 
+									<td>{{ $job_list['city_name']}}</td>
+									<td>{{ $job_list['job_category_name']}}</td>
+									<td>{{ $job_list['working_day_name']}}</td>
+									<td>{{ $job_list['maxexperience_required']}}</td>
+									<td>{{ $job_list['skills']}}</td>   
+									<td>
+										<a href="{{ url('/admin/job-details/'.$job_list['employer_id'].'/'.$job_list['id'])}}" target="_blank">Know More...</a>
+									</td>
 								</tr>
 							@endforeach
 							</tbody>
@@ -145,47 +184,13 @@
 						@else
 							<span class="danger">No work experience added by candidate...</span>
 							@endif
+						</div>
 					</div>
-					
+
                 </div>
               </div>
             </div>
-			
-			<div class="col-lg-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Qualification</h4>		
-					
-					<div class="form-group">
-					@if(count($candidate_qualifications)>0)
-						<table class="table table-striped project-orders-table" id="my_datatable">
-							<thead style="color:#656565; font-weight:normal;" >
-								<th style="line-height:15px; width:20%; border-bottom:1px solid #c9c8c8!important;">Course Name</th>
-								<th style="line-height:15px; width:40%; border-bottom:1px solid #c9c8c8!important;">College/University</th>
-								<th style="line-height:15px; width:20%; border-bottom:1px solid #c9c8c8!important;">Year</th>
-								<th style="line-height:15px; width:20%; border-bottom:1px solid #c9c8c8!important;">Marks</th>
-							</thead>
-							
-							<tbody>
-							@foreach($candidate_qualifications as $candidate_qualification)
-								<tr>
-									<td>{{ $candidate_qualification['qualification']}}</td>  
-									<td>{{ $candidate_qualification['college_university']}}</td>  
-									<td>{{ $candidate_qualification['year']}}</td> 
-									<td>{{ $candidate_qualification['marks']}}</td>  
-								</tr>
-							@endforeach
-							</tbody>
-							
-						</table>
-						@else
-							<span class="danger">No qualification added by candidate...</span>
-							@endif
-					</div>
-					
-                </div>
-              </div>
-            </div>			
+
 			
           </div>
 

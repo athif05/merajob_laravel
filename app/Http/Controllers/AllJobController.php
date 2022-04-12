@@ -19,6 +19,44 @@ use Mail;
 
 class AllJobController extends Controller {
 	
+	
+	/*this function show all jobs in admin panel*/
+	public function showAllJobs(Request $request){
+
+		$job_locations = Cities::where('status', '1')
+			->where('is_deleted', '0')
+			->where('country_id', '101')
+			->orderBy('name', 'ASC')
+			->get();		
+		
+		$query = AllJob::leftJoin('states', 'states.id', '=', 'all_jobs.state_id')
+			->leftJoin('cities', 'cities.id', '=', 'all_jobs.city_id')
+			->leftJoin('job_categories', 'job_categories.id', '=', 'all_jobs.types_of_job_id')
+			->leftJoin('working_days', 'working_days.id', '=', 'all_jobs.working_days')
+			->leftJoin('main_job_categories', 'main_job_categories.id', '=', 'all_jobs.job_category_id')
+			->leftJoin('employer_details', 'employer_details.employer_id', '=', 'all_jobs.employer_id')
+			->leftJoin('work_experiences', 'work_experiences.id', '=', 'all_jobs.max_experience_required')
+			->orderBy('all_jobs.id','DESC')
+			->select('all_jobs.id', 'all_jobs.employer_id', 'all_jobs.job_title', 'all_jobs.salary', 'all_jobs.no_of_opening', 'all_jobs.job_location_id', 'states.name as state_name', 'cities.name as city_name', 'job_categories.name as job_category_name', 'working_days.name as working_day_name', 'all_jobs.working_hours', 'all_jobs.experience_required', 'all_jobs.min_experience_required', 'work_experiences.name as max_experiencerequired', 'all_jobs.skills','employer_details.company_name','employer_details.id as employer_details_id');
+		
+		if($request->searching_keyword){
+			$query->where('all_jobs.job_title', 'like', '%'.$request->searching_keyword.'%');
+		}
+		if($request->searching_city){
+			$query->where('all_jobs.job_location_id', '=', $request->searching_city);
+		}
+		if($request->searching_category){
+			$query->where('all_jobs.job_category_id', '=', $request->searching_category);
+		}		
+			
+		$job_lists=$query->paginate(12);
+		$total_no_of_jobs = $job_lists->count();
+		
+		return view('admin/job-list', compact('job_locations','job_lists'));
+
+	}
+
+
 	/*this function show all applied jobs in admin panel*/
 	public function showAllAppliedJobs(){
 		
@@ -85,8 +123,14 @@ class AllJobController extends Controller {
 			->where('all_jobs.is_deleted', '0')
 			->select('all_jobs.id', 'all_jobs.employer_id', 'all_jobs.job_title', 'all_jobs.salary', 'all_jobs.no_of_opening', 'all_jobs.job_location_id', 'states.name as state_name', 'cities.name as city_name', 'job_categories.name as job_category_name', 'working_days.name as working_day_name', 'all_jobs.working_hours', 'all_jobs.experience_required', 'all_jobs.min_experience_required', 'all_jobs.max_experience_required', 'all_jobs.ctc', 'all_jobs.gender', 'all_jobs.candidate_requirements', 'all_jobs.skills', 'all_jobs.english_required', 'all_jobs.interview_information_company_name', 'all_jobs.interview_information_hr_name', 'all_jobs.interview_information_hr_number', 'all_jobs.interview_information_hr_email', 'all_jobs.job_address_state', 'all_jobs.job_address_flat_address', 'all_jobs.interview_address_city', 'all_jobs.interview_address_state', 'all_jobs.interview_address_full_address', 'all_jobs.candidate_fee_charged', 'all_jobs.candidate_fee_amount','all_jobs.candidate_fee_reasons','all_jobs.candidate_fee_other_reasons', 'fee_charged_reasons.name as candidate_fee_reasons_name', 'all_jobs.job_address_city','all_jobs.created_at','all_jobs.job_description','all_jobs.job_responsibilities','all_jobs.job_requirements','main_job_categories.name as main_job_category_name','all_jobs.qualification_ids')
 			->first();
+
+
+		$total_jobs_applied = JobAppliedByEmployee::where('job_id', $job_id)
+			->where('is_deleted', '0')
+			->get();
+		$total_no_of_jobs_applied =$total_jobs_applied->count();
 		
-		return view('admin/job-details', compact('employer_details','job_locations','states_names','cities_names','fee_charged_reasons', 'qualifications', 'job_lists'));
+		return view('admin/job-details', compact('employer_details','job_locations','states_names','cities_names','fee_charged_reasons', 'qualifications', 'job_lists','total_no_of_jobs_applied'));
 		
 	}
 	
@@ -288,7 +332,7 @@ class AllJobController extends Controller {
 			->leftJoin('main_job_categories', 'main_job_categories.id', '=', 'all_jobs.job_category_id')
 			->leftJoin('employer_details', 'employer_details.employer_id', '=', 'all_jobs.employer_id')
 			->orderBy('all_jobs.id','DESC')
-			->select('all_jobs.id', 'all_jobs.employer_id', 'all_jobs.job_title', 'all_jobs.salary', 'all_jobs.no_of_opening', 'all_jobs.job_location_id', 'states.name as state_name', 'cities.name as city_name', 'job_categories.name as job_category_name', 'working_days.name as working_day_name', 'all_jobs.working_hours', 'all_jobs.experience_required', 'all_jobs.min_experience_required', 'all_jobs.max_experience_required', 'all_jobs.ctc', 'all_jobs.gender', 'all_jobs.candidate_requirements', 'all_jobs.skills', 'all_jobs.english_required', 'all_jobs.interview_information_company_name', 'all_jobs.interview_information_hr_name', 'all_jobs.interview_information_hr_number', 'all_jobs.interview_information_hr_email', 'all_jobs.job_address_city', 'all_jobs.job_address_state', 'all_jobs.job_address_flat_address', 'all_jobs.interview_address_city', 'all_jobs.interview_address_state', 'all_jobs.interview_address_full_address', 'all_jobs.candidate_fee_charged', 'all_jobs.candidate_fee_amount', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city','all_jobs.created_at','all_jobs.job_description','all_jobs.job_responsibilities','all_jobs.job_requirements','main_job_categories.name as main_job_category_name','all_jobs.qualification_ids','employer_details.company_logo','employer_details.company_name');
+			->select('all_jobs.id', 'all_jobs.employer_id', 'all_jobs.job_title', 'all_jobs.salary', 'all_jobs.no_of_opening', 'all_jobs.job_location_id', 'states.name as state_name', 'cities.name as city_name', 'job_categories.name as job_category_name', 'working_days.name as working_day_name', 'all_jobs.working_hours', 'all_jobs.experience_required', 'all_jobs.min_experience_required', 'all_jobs.max_experience_required', 'all_jobs.ctc', 'all_jobs.gender', 'all_jobs.candidate_requirements', 'all_jobs.skills', 'all_jobs.english_required', 'all_jobs.interview_information_company_name', 'all_jobs.interview_information_hr_name', 'all_jobs.interview_information_hr_number', 'all_jobs.interview_information_hr_email', 'all_jobs.job_address_city', 'all_jobs.job_address_state', 'all_jobs.job_address_flat_address', 'all_jobs.interview_address_city', 'all_jobs.interview_address_state', 'all_jobs.interview_address_full_address', 'all_jobs.candidate_fee_charged', 'all_jobs.candidate_fee_amount','all_jobs.created_at','all_jobs.job_description','all_jobs.job_responsibilities','all_jobs.job_requirements','main_job_categories.name as main_job_category_name','all_jobs.qualification_ids','employer_details.company_logo','employer_details.company_name');
 		
 		if($request->searching_keyword){
 			$query->where('all_jobs.job_title', 'like', '%'.$request->searching_keyword.'%');
@@ -353,7 +397,7 @@ class AllJobController extends Controller {
 			->leftJoin('main_job_categories', 'main_job_categories.id', '=', 'all_jobs.job_category_id')
 			->leftJoin('employer_details', 'employer_details.employer_id', '=', 'all_jobs.employer_id')
 			->orderBy('all_jobs.id','DESC')
-			->select('all_jobs.id', 'all_jobs.employer_id', 'all_jobs.job_title', 'all_jobs.salary', 'all_jobs.no_of_opening', 'all_jobs.job_location_id', 'states.name as state_name', 'cities.name as city_name', 'job_categories.name as job_category_name', 'working_days.name as working_day_name', 'all_jobs.working_hours', 'all_jobs.experience_required', 'all_jobs.min_experience_required', 'all_jobs.max_experience_required', 'all_jobs.ctc', 'all_jobs.gender', 'all_jobs.candidate_requirements', 'all_jobs.skills', 'all_jobs.english_required', 'all_jobs.interview_information_company_name', 'all_jobs.interview_information_hr_name', 'all_jobs.interview_information_hr_number', 'all_jobs.interview_information_hr_email', 'all_jobs.job_address_city', 'all_jobs.job_address_state', 'all_jobs.job_address_flat_address', 'all_jobs.interview_address_city', 'all_jobs.interview_address_state', 'all_jobs.interview_address_full_address', 'all_jobs.candidate_fee_charged', 'all_jobs.candidate_fee_amount', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city','all_jobs.created_at','all_jobs.job_description','all_jobs.job_responsibilities','all_jobs.job_requirements','main_job_categories.name as main_job_category_name','all_jobs.qualification_ids','employer_details.company_logo','employer_details.company_name')
+			->select('all_jobs.id', 'all_jobs.employer_id', 'all_jobs.job_title', 'all_jobs.salary', 'all_jobs.no_of_opening', 'all_jobs.job_location_id', 'states.name as state_name', 'cities.name as city_name', 'job_categories.name as job_category_name', 'working_days.name as working_day_name', 'all_jobs.working_hours', 'all_jobs.experience_required', 'all_jobs.min_experience_required', 'all_jobs.max_experience_required', 'all_jobs.ctc', 'all_jobs.gender', 'all_jobs.candidate_requirements', 'all_jobs.skills', 'all_jobs.english_required', 'all_jobs.interview_information_company_name', 'all_jobs.interview_information_hr_name', 'all_jobs.interview_information_hr_number', 'all_jobs.interview_information_hr_email', 'all_jobs.job_address_city', 'all_jobs.job_address_state', 'all_jobs.job_address_flat_address', 'all_jobs.interview_address_city', 'all_jobs.interview_address_state', 'all_jobs.interview_address_full_address', 'all_jobs.candidate_fee_charged', 'all_jobs.candidate_fee_amount','all_jobs.created_at','all_jobs.job_description','all_jobs.job_responsibilities','all_jobs.job_requirements','main_job_categories.name as main_job_category_name','all_jobs.qualification_ids','employer_details.company_logo','employer_details.company_name')
 			->paginate(12);
 		$total_no_of_jobs = $job_lists->count();
 		
@@ -412,7 +456,7 @@ class AllJobController extends Controller {
 			->leftJoin('main_job_categories', 'main_job_categories.id', '=', 'all_jobs.job_category_id')
 			->where('all_jobs.status', '1')
 			->where('all_jobs.is_deleted', '0')
-			->select('all_jobs.id', 'all_jobs.employer_id', 'all_jobs.job_title', 'all_jobs.salary', 'all_jobs.no_of_opening', 'all_jobs.job_location_id', 'states.name as state_name', 'cities.name as city_name', 'job_categories.name as job_category_name', 'working_days.name as working_day_name', 'all_jobs.working_hours', 'all_jobs.experience_required', 'all_jobs.min_experience_required', 'all_jobs.max_experience_required', 'all_jobs.ctc', 'all_jobs.gender', 'all_jobs.candidate_requirements', 'all_jobs.skills', 'all_jobs.english_required', 'all_jobs.interview_information_company_name', 'all_jobs.interview_information_hr_name', 'all_jobs.interview_information_hr_number', 'all_jobs.interview_information_hr_email', 'all_jobs.job_address_city', 'all_jobs.job_address_state', 'all_jobs.job_address_flat_address', 'all_jobs.interview_address_city', 'all_jobs.interview_address_state', 'all_jobs.interview_address_full_address', 'all_jobs.candidate_fee_charged', 'all_jobs.candidate_fee_amount', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city','all_jobs.created_at','all_jobs.job_description','all_jobs.job_responsibilities','all_jobs.job_requirements','main_job_categories.name as main_job_category_name','all_jobs.qualification_ids')
+			->select('all_jobs.id', 'all_jobs.employer_id', 'all_jobs.job_title', 'all_jobs.salary', 'all_jobs.no_of_opening', 'all_jobs.job_location_id', 'states.name as state_name', 'cities.name as city_name', 'job_categories.name as job_category_name', 'working_days.name as working_day_name', 'all_jobs.working_hours', 'all_jobs.experience_required', 'all_jobs.min_experience_required', 'all_jobs.max_experience_required', 'all_jobs.ctc', 'all_jobs.gender', 'all_jobs.candidate_requirements', 'all_jobs.skills', 'all_jobs.english_required', 'all_jobs.interview_information_company_name', 'all_jobs.interview_information_hr_name', 'all_jobs.interview_information_hr_number', 'all_jobs.interview_information_hr_email', 'all_jobs.job_address_city', 'all_jobs.job_address_state', 'all_jobs.job_address_flat_address', 'all_jobs.interview_address_city', 'all_jobs.interview_address_state', 'all_jobs.interview_address_full_address', 'all_jobs.candidate_fee_charged', 'all_jobs.candidate_fee_amount','all_jobs.created_at','all_jobs.job_description','all_jobs.job_responsibilities','all_jobs.job_requirements','main_job_categories.name as main_job_category_name','all_jobs.qualification_ids')
 			->get();
 		
 		return view('job-details', compact('employer_details','job_locations','states_names','cities_names','fee_charged_reasons', 'qualifications', 'job_lists'));

@@ -135,6 +135,8 @@ Route::get('/admin', function () {
 
 Route::get('/admin/all-applied-jobs', 'AllJobController@showAllAppliedJobs');
 
+Route::get('/admin/all-job-lists', 'AllJobController@showAllJobs');
+
 Route::get('/admin/job-details/{empr_id}/{job_id}', 'AllJobController@showSingleJobAdmin');
 
 Route::post('/admin/update-applied-job-status-admin', 'AllJobController@updateAppliedJobStatus');
@@ -213,3 +215,116 @@ Route::post('/admin/update-city/update', 'StateCityController@updateCity')->name
 Route::post('/admin/delete-city', 'StateCityController@deleteCity');
 
 Route::post('/admin/update-city-status', 'StateCityController@updateCityStatus');
+
+/* main job domains, start here */
+Route::get('/admin/manage-job-domains', 'MainJobCategoryController@fetch');
+
+Route::get('/admin/main-job-domain-edit/{id}', 'MainJobCategoryController@editDomain');
+
+Route::post('/admin/update-main-job-domain/update', 'MainJobCategoryController@updateDomain')->name('admin/update-main-job-domain.update');
+
+Route::get('/admin/add-new-main-job-domain', 'MainJobCategoryController@addNewDomain');
+
+Route::post('/admin/add-new-main-job-domain/add', 'MainJobCategoryController@saveNewDomain')->name('admin/add-new-main-job-domain.add');
+
+Route::post('/admin/update-main-job-domain-status', 'MainJobCategoryController@updateStatus');
+
+Route::post('/admin/delete-main-job-domain', 'MainJobCategoryController@deleteDomain');
+/* main job domains, end here */
+
+
+/* job category, start here */
+Route::get('/admin/manage-job-categories', 'JobCategoriesController@fetch');
+
+Route::get('/admin/job-category-edit/{id}', 'JobCategoriesController@editCategory');
+
+Route::post('/admin/update-job-category/update', 'JobCategoriesController@updateCategory')->name('admin/update-job-category.update');
+
+Route::get('/admin/add-new-job-categories', 'JobCategoriesController@addNewCategory');
+
+Route::post('/admin/add-new-job-category/add', 'JobCategoriesController@saveNewCategory')->name('admin/add-new-job-category.add');
+
+Route::post('/admin/update-job-categorie-status', 'JobCategoriesController@updateStatus');
+
+Route::post('/admin/delete-job-category', 'JobCategoriesController@deleteJobCategory');
+/* job category, end here */
+
+
+
+/* notice periods, start here */
+Route::get('/admin/manage-notice-periods', 'NoticePeriodController@fetch');
+
+Route::get('/admin/notice-period-edit/{id}', 'NoticePeriodController@editNoticePeriod');
+
+Route::post('/admin/update-notice-period/update', 'NoticePeriodController@updateNoticePeriod')->name('admin/update-notice-period.update');
+
+Route::get('/admin/add-new-notice-period', 'NoticePeriodController@addNewNoticePeriod');
+
+Route::post('/admin/add-new-notice-period/add', 'NoticePeriodController@saveNewNoticePeriod')->name('admin/add-new-notice-period.add');
+
+Route::post('/admin/update-notice-period-status', 'NoticePeriodController@updateStatus');
+
+Route::post('/admin/delete-notice-period', 'NoticePeriodController@deleteNoticePeriod');
+/* notice periods, end here */
+
+
+
+/* fees charges, start here */
+Route::get('/admin/manage-fee-charge-reasons', 'FeeChargedReasonController@fetch');
+
+Route::get('/admin/fee-charge-reason-edit/{id}', 'FeeChargedReasonController@editFeeChargeReason');
+
+Route::post('/admin/update-fee-charge-reason/update', 'FeeChargedReasonController@updateFeeChargeReason')->name('admin/update-fee-charge-reason.update');
+
+Route::get('/admin/add-new-fee-charge-reason', 'FeeChargedReasonController@addNewFeeChargeReason');
+
+Route::post('/admin/add-new-fee-charge-reason/add', 'FeeChargedReasonController@saveNewFeeChargeReason')->name('admin/add-new-fee-charge-reason.add');
+
+Route::post('/admin/update-fee-charge-reason-status', 'FeeChargedReasonController@updateStatus');
+
+Route::post('/admin/delete-fee-charge-reason', 'FeeChargedReasonController@deleteFeeChargeReason');
+/* fees charges, end here */
+
+
+
+/* working days, start here */
+Route::get('/admin/manage-working-days', 'WorkingDayController@fetch');
+
+Route::get('/admin/working-day-edit/{id}', 'WorkingDayController@editWorkingDay');
+
+Route::post('/admin/update-working-day/update', 'WorkingDayController@updateWorkingDay')->name('admin/update-working-day.update');
+
+Route::get('/admin/add-new-working-day', 'WorkingDayController@addNewWorkingDay');
+
+Route::post('/admin/add-new-working-day/add', 'WorkingDayController@saveNewWorkingDay')->name('admin/add-new-working-day.add');
+
+Route::post('/admin/update-working-day-status', 'WorkingDayController@updateStatus');
+
+Route::post('/admin/delete-working-day', 'WorkingDayController@deleteWorkingDay');
+/* working days, end here */
+
+
+
+/* working experiance, start here */
+Route::get('/admin/manage-work-experiance', 'WorkExperienceController@fetch');
+
+Route::get('/admin/work-experiance-edit/{id}', 'WorkExperienceController@editWorkingExperiance');
+
+Route::post('/admin/update-work-experiance/update', 'WorkExperienceController@updateWorkingExperiance')->name('admin/update-work-experiance.update');
+
+Route::get('/admin/add-new-work-experiance', 'WorkExperienceController@addNewWorkingExperiance');
+
+Route::post('/admin/add-new-work-experiance/add', 'WorkExperienceController@saveNewWorkingExperiance')->name('admin/add-new-work-experiance.add');
+
+Route::post('/admin/update-work-experiance-status', 'WorkExperienceController@updateStatus');
+
+Route::post('/admin/delete-work-experiance', 'WorkExperienceController@deleteWorkingExperiance');
+/* working experiance, end here */
+
+
+
+/* website about us, start here */
+Route::get('/admin/about-us', 'AboutusController@fetch');
+
+Route::post('/admin/update-about-us/update', 'AboutusController@update')->name('admin/update-about-us.update');
+/* website about us, end here */

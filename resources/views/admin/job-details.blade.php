@@ -3,7 +3,7 @@
 @section("title")
 
 	<!-- Required meta tags -->
-	<title>Job Details | {{ env('MY_SITE_NAME') }}</title>
+	<title>{{ $job_lists['job_title']}} | {{ env('MY_SITE_NAME') }}</title>
 	
 	<style>
 		.form-group {
@@ -262,6 +262,20 @@
 						@endif
 					
 					@endif
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-lg-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Total Job Applied by Candidate</h4>
+                  
+					<div class="form-group">
+						<label for="Name"><strong>Applied by : </strong> {{ $total_no_of_jobs_applied}} Candidates</label>
+					</div>
+					
                 </div>
               </div>
             </div>

@@ -29,14 +29,14 @@ class EmployerDetailController extends Controller {
 	public function showEmployerDetailAdmin($id) {
 		//dd($id);
 
-		$employer_details = Employer_detail::where('id', $id)
+		$employer_detailss = Employer_detail::where('employer_details.id', $id)
 			->leftJoin('states', 'states.id', '=', 'employer_details.state_id')
 			->leftJoin('cities', 'cities.id', '=', 'employer_details.city_id')
 			->leftJoin('company_domains', 'company_domains.id', '=', 'employer_details.company_domain_id')
 			->where('employer_details.status', '1')
 			->where('employer_details.is_deleted', '0')
 			->select('employer_details.id', 'employer_details.employer_id', 'employer_details.company_logo', 'employer_details.company_name', 'states.name as state_name', 'cities.name as city_name', 'employer_details.email', 'employer_details.mobile_number', 'employer_details.company_phone', 'employer_details.alternate_number', 'employer_details.company_address', 'employer_details.about_company', 'company_domains.name as company_domains_name', 'employer_details.company_established_year', 'employer_details.team_member', 'employer_details.company_website', 'employer_details.company_views', 'employer_details.facebook_links', 'employer_details.twitter_links', 'employer_details.skype_links', 'employer_details.pinterest_links')
-			->get();
+			->first();
 
 		$job_locations = Cities::where('status', '1')
 			->where('is_deleted', '0')
@@ -44,23 +44,19 @@ class EmployerDetailController extends Controller {
 			->orderBy('name', 'ASC')
 			->get();
 
-		$fee_charged_reasons = FeeChargedReason::where('status', '1')
-			->where('is_deleted', '0')
-			->orderBy('id', 'ASC')
-			->get();
-
-		$job_lists = AllJob::where('employer_id', $id)
+		$job_lists = AllJob::where('employer_id', $employer_detailss['employer_id'])
 			->leftJoin('states', 'states.id', '=', 'all_jobs.state_id')
 			->leftJoin('cities', 'cities.id', '=', 'all_jobs.city_id')
 			->leftJoin('job_categories', 'job_categories.id', '=', 'all_jobs.types_of_job_id')
 			->leftJoin('working_days', 'working_days.id', '=', 'all_jobs.working_days')
+			->leftJoin('work_experiences', 'work_experiences.id', '=', 'all_jobs.max_experience_required')
 			->where('all_jobs.status', '1')
 			->where('all_jobs.is_deleted', '0')
-			->select('all_jobs.id', 'all_jobs.employer_id', 'all_jobs.job_title', 'all_jobs.salary', 'all_jobs.no_of_opening', 'all_jobs.job_location_id', 'states.name as state_name', 'cities.name as city_name', 'job_categories.name as job_category_name', 'working_days.name as working_day_name', 'all_jobs.working_hours', 'all_jobs.experience_required', 'all_jobs.min_experience_required', 'all_jobs.max_experience_required', 'all_jobs.ctc', 'all_jobs.gender', 'all_jobs.candidate_requirements', 'all_jobs.skills', 'all_jobs.english_required', 'all_jobs.interview_information_company_name', 'all_jobs.interview_information_hr_name', 'all_jobs.interview_information_hr_number', 'all_jobs.interview_information_hr_email', 'all_jobs.job_address_city', 'all_jobs.job_address_state', 'all_jobs.job_address_flat_address', 'all_jobs.interview_address_city', 'all_jobs.interview_address_state', 'all_jobs.interview_address_full_address', 'all_jobs.candidate_fee_charged', 'all_jobs.candidate_fee_amount', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city')
+			->select('all_jobs.id', 'all_jobs.employer_id', 'all_jobs.job_title', 'all_jobs.salary', 'all_jobs.no_of_opening', 'all_jobs.job_location_id', 'states.name as state_name', 'cities.name as city_name', 'job_categories.name as job_category_name', 'working_days.name as working_day_name', 'all_jobs.working_hours', 'all_jobs.experience_required', 'all_jobs.min_experience_required', 'work_experiences.name as maxexperience_required', 'all_jobs.ctc', 'all_jobs.gender', 'all_jobs.candidate_requirements', 'all_jobs.skills', 'all_jobs.english_required', 'all_jobs.interview_information_company_name', 'all_jobs.interview_information_hr_name', 'all_jobs.interview_information_hr_number', 'all_jobs.interview_information_hr_email', 'all_jobs.job_address_city', 'all_jobs.job_address_state', 'all_jobs.job_address_flat_address', 'all_jobs.interview_address_city', 'all_jobs.interview_address_state', 'all_jobs.interview_address_full_address', 'all_jobs.candidate_fee_charged', 'all_jobs.candidate_fee_amount', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city', 'all_jobs.job_address_city')
 			->get();
 		$total_jobs = $job_lists->count();
 
-		return view('admin/employer-details', compact('employer_details', 'job_locations', 'states_names', 'cities_names', 'fee_charged_reasons', 'job_lists','total_jobs'));
+		return view('admin/employer-details', compact('employer_detailss','job_lists','total_jobs','job_locations'));
 
 		//return view('employers-details');
 	}
