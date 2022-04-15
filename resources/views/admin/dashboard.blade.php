@@ -320,7 +320,7 @@
                     </thead>
                     <tbody>
                       <?php $j=1;?>
-                      
+                      @if(count($all_applied_jobs))
             @foreach($all_applied_jobs as $all_applied_job)
             <tr>
                         <td><?php echo $j;?>.</td>
@@ -364,7 +364,13 @@
             </td>         
                       </tr>
             <?php $j++;?>
-                      @endforeach
+                      @endforeach 
+
+                      @else 
+                      <tr>
+                        <td colspan="10">No job record...</td>
+                      </tr>
+                      @endif
                     </tbody>
                   </table>
           
