@@ -175,7 +175,7 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
 	<ul class="nav">
 	  <li class="nav-item">
-		<a class="nav-link" href="{{ url('/admin') }}">
+		<a class="nav-link" href="{{ url('/admin/dashboard') }}">
 		  <i class="typcn typcn-device-desktop menu-icon"></i>
 		  <span class="menu-title">Dashboard</span>
 		  <!--<div class="badge badge-danger">new</div>-->
@@ -250,7 +250,7 @@
 		</div>
 	  </li>
 	  
-	  <li class="nav-item">
+	  <!-- <li class="nav-item">
 		<a class="nav-link" data-toggle="collapse" href="#form-user" aria-expanded="false" aria-controls="form-user">
 		  <i class="typcn typcn-film menu-icon"></i>
 		  <span class="menu-title">Manage Users</span>
@@ -262,10 +262,10 @@
 			<li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Employers List</a></li>
 		  </ul>
 		</div>
-	  </li>
+	  </li> -->
 	  
 	  <li class="nav-item">
-		<a class="nav-link" href="{{ url('/all-applied-jobs') }}">
+		<a class="nav-link" href="{{ url('/admin/contact-us-emails') }}">
 		  <i class="typcn typcn-document-text menu-icon"></i>
 		  <span class="menu-title">Contact Message</span>
 		</a>
@@ -280,10 +280,10 @@
 		<div class="collapse" id="form-website">
 		  <ul class="nav flex-column sub-menu">
 			<li class="nav-item"><a class="nav-link" href="{{ url('/admin/about-us') }}">About Us</a></li>
-			<li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Contact Us</a></li>
-			<li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Blog List</a></li>
-			<li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Blog Category</a></li>
-			<li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Blogs Author</a></li>
+			<li class="nav-item"><a class="nav-link" href="{{ url('/admin/contact-us') }}">Contact Us</a></li>
+			<li class="nav-item"><a class="nav-link" href="{{ url('/admin/blog-lists') }}">Blog List</a></li>
+			<li class="nav-item"><a class="nav-link" href="{{ url('/admin/manage-blog-categories') }}">Blog Category</a></li>
+			<li class="nav-item"><a class="nav-link" href="{{ url('/admin/manage-blog-authors') }}">Blogs Author</a></li>
 		  </ul>
 		</div>
 	  </li>

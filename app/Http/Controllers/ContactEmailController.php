@@ -8,6 +8,17 @@ use Mail;
 
 class ContactEmailController extends Controller {
 
+	/*show all email from contact us page in admin panel*/
+	public function fetch(Request $request) {
+
+		$emails = ContactEmail::orderBy('id', 'DESC')
+			->select('id', 'name', 'email', 'subject', 'message')
+			->paginate(15);
+
+		return view('admin/contact-us-emails', compact('emails'));
+	}
+
+
 	public function store(Request $request) {
 
 	$msg_line='';

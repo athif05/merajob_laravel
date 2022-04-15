@@ -51,8 +51,12 @@
                 <div class="info">
                   <h5 class="title">Call Us:</h5>
                   <p>
-                    <a href="tel://568975468">(00) 568 975 468</a><br>
-                    <a href="tel://+88465748937">+88 465 748 937</a>
+                    <a href="tel://568975468">
+                      {{ $contactus_details['contact_number1']}}
+                    </a><br>
+                    <a href="tel://+88465748937">
+                      {{ $contactus_details['contact_number2']}}
+                    </a>
                   </p>
                 </div>
               </div>
@@ -63,8 +67,13 @@
                 <div class="info">
                   <h5 class="title">Email:</h5>
                   <p>
-                    <a href="mailto://youremail@gmail.com">youremail@gmail.com</a><br>
-                    <a href="mailto://demomail@gmail.com">demomail@gmail.com</a>
+                    <a href="mailto:{{ $contactus_details['email1']}}">
+                      {{ $contactus_details['email1']}}
+                    </a>
+                    <br>
+                    <a href="mailto:{{ $contactus_details['email2']}}">
+                      {{ $contactus_details['email2']}}
+                    </a>
                   </p>
                 </div>
               </div>
@@ -75,8 +84,8 @@
                 <div class="info">
                   <h5 class="title">Address:</h5>
                   <p>
-                    Sunset Beach, North <br>
-                    Carolina(NC), 28468
+                    {{ $contactus_details['address_line1']}} <br>
+                    {{ $contactus_details['address_line2']}}
                   </p>
                 </div>
               </div>
@@ -145,7 +154,7 @@
           </div>
           <div class="col-lg-6">
             <div class="map-area">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1912972.6636523942!2d144.28416561146162!3d-38.05127959850456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad646b5d2ba4df7%3A0x4045675218ccd90!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sbd!4v1634028820404!5m2!1sen!2sbd"></iframe>
+              <iframe src="{{ $contactus_details['google_map']}}"></iframe>
             </div>
           </div>
         </div>

@@ -71,11 +71,9 @@ Route::get('/blog-details', function () {
 	return view('blog-details');
 });
 
-Route::get('/about-us', 'Aboutus@index');
+Route::get('/about-us', 'AboutusController@index');
 
-Route::get('/contact-us', function () {
-	return view('contact');
-});
+Route::get('/contact-us', 'ContactusController@index');
 
 Route::get('/login', function () {
 	return view('login');
@@ -127,11 +125,10 @@ Route::post('contact/touch', 'ContactEmailController@store')->name('contact.touc
 return view('employee-profile');
 });*/
 
-/******************** Admin Panel routes start here *********/
 
-Route::get('/admin', function () {
-	return view('admin/index');
-});
+
+/******************** Admin Panel routes start here *********/
+Route::get('/admin/dashboard', 'AllJobController@showDashboard');
 
 Route::get('/admin/all-applied-jobs', 'AllJobController@showAllAppliedJobs');
 
@@ -322,9 +319,72 @@ Route::post('/admin/delete-work-experiance', 'WorkExperienceController@deleteWor
 /* working experiance, end here */
 
 
+/* contact us email, start here */
+Route::get('/admin/contact-us-emails', 'ContactEmailController@fetch');
+/* contact us email, end here */
+
+
 
 /* website about us, start here */
 Route::get('/admin/about-us', 'AboutusController@fetch');
 
 Route::post('/admin/update-about-us/update', 'AboutusController@update')->name('admin/update-about-us.update');
 /* website about us, end here */
+
+
+/* website contact us, start here */
+Route::get('/admin/contact-us', 'ContactusController@fetch');
+
+Route::post('/admin/update-contact-us/update', 'ContactusController@update')->name('admin/update-contact-us.update');
+/* website contact us, end here */
+
+
+/* blog list, start here */
+Route::get('/admin/blog-lists', 'BlogController@fetch');
+
+Route::get('/admin/blog-edit/{id}', 'BlogController@editBlog');
+
+Route::post('/admin/update-blog/update', 'BlogController@updateBlog')->name('admin/update-blog.update');
+
+Route::get('/admin/add-new-blog', 'BlogController@addNewBlog');
+
+Route::post('/admin/add-new-blog/add', 'BlogController@saveNewBlog')->name('admin/add-new-blog.add');
+
+Route::post('/admin/update-blog-status', 'BlogController@updateStatus');
+
+Route::post('/admin/delete-blog', 'BlogController@deleteBlog');
+/* blog list, end here */
+
+
+/* blog categories, start here */
+Route::get('/admin/manage-blog-categories', 'BlogCategoryController@fetch');
+
+Route::get('/admin/blog-category-edit/{id}', 'BlogCategoryController@editBlogCategory');
+
+Route::post('/admin/update-blog-category/update', 'BlogCategoryController@updateBlogCategory')->name('admin/update-blog-category.update');
+
+Route::get('/admin/add-new-blog-category', 'BlogCategoryController@addNewBlogCategory');
+
+Route::post('/admin/add-new-blog-category/add', 'BlogCategoryController@saveNewBlogCategory')->name('admin/add-new-blog-category.add');
+
+Route::post('/admin/update-blog-category-status', 'BlogCategoryController@updateStatus');
+
+Route::post('/admin/delete-blog-category', 'BlogCategoryController@deleteBlogCategory');
+/* blog categories, end here */
+
+
+/* blog author, start here */
+Route::get('/admin/manage-blog-authors', 'AuthorController@fetch');
+
+Route::get('/admin/blog-author-edit/{id}', 'AuthorController@editAuthor');
+
+Route::post('/admin/update-blog-author/update', 'AuthorController@updateAuthor')->name('admin/update-blog-author.update');
+
+Route::get('/admin/add-new-author', 'AuthorController@addNewAuthor');
+
+Route::post('/admin/add-new-blog-author/add', 'AuthorController@saveNewAuthor')->name('admin/add-new-blog-author.add');
+
+Route::post('/admin/update-blog-author-status', 'AuthorController@updateStatus');
+
+Route::post('/admin/delete-blog-author', 'AuthorController@deleteAuthor');
+/* blog author, end here */

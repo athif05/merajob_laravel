@@ -12,6 +12,7 @@ use App\WorkingDay;
 use App\Employer_detail;
 use App\MainJobCategory;
 use App\Qualification;
+use App\User;
 use Illuminate\Http\Request;
 use App\JobAppliedByEmployee;
 
@@ -19,7 +20,33 @@ use Mail;
 
 class AllJobController extends Controller {
 	
-	
+	/*show dashboard panel, start here*/
+	public function showDashboard(Request $request){
+
+		$totalJobs=AllJob::where('status', '1');
+		$total_jobs=$totalJobs->count();
+
+		$totalCandidates=Candidate_details::where('status', '1');
+		$total_candidates=$totalCandidates->count();
+
+		$totalEmployers=Employer_detail::where('status', '1');
+		$total_employers=$totalEmployers->count();
+
+		$all_applied_jobs = JobAppliedByEmployee::where('job_applied_by_employees.is_deleted', '0')
+			->where('job_applied_by_employees.applied_date', '>=', date('Y-m-d').' 00:00:00')
+			->leftJoin('candidate_details', 'candidate_details.user_id', '=', 'job_applied_by_employees.user_id')
+			->leftJoin('all_jobs', 'all_jobs.id', '=', 'job_applied_by_employees.job_id')
+			->leftJoin('cities', 'cities.id', '=', 'all_jobs.job_location_id')
+			->leftJoin('employer_details', 'employer_details.employer_id', '=', 'all_jobs.employer_id')
+			->orderBy('job_applied_by_employees.id', 'DESC')
+			->select('job_applied_by_employees.id', 'job_applied_by_employees.job_id as job_id', 'job_applied_by_employees.user_id as user_id', 'job_applied_by_employees.applied_date', 'job_applied_by_employees.is_deleted', 'job_applied_by_employees.status as status', 'candidate_details.name as candidate_name', 'candidate_details.email as candidate_email', 'candidate_details.mobile_number as candidate_mobile_number', 'all_jobs.job_title as job_title', 'all_jobs.ctc as ctc', 'all_jobs.employer_id as employer_id', 'all_jobs.job_location_id as job_location_id','cities.name as job_location_name','employer_details.company_name as company_name','all_jobs.employer_id as employer_id')
+			->paginate(10);
+
+		return view('admin/dashboard', compact('total_jobs','total_candidates','total_employers','all_applied_jobs'));
+	}
+	/*show dashboard panel, end here*/
+
+
 	/*this function show all jobs in admin panel*/
 	public function showAllJobs(Request $request){
 

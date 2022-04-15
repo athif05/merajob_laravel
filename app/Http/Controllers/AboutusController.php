@@ -7,7 +7,16 @@ use Illuminate\Http\Request;
 
 class AboutusController extends Controller
 {
-    /*show all Work Experience in a list in admin panel*/
+
+	//show about us page in fron end
+	public function index() {
+
+		$aboutus_details = Aboutus::first();
+
+		return view('about-us', compact('aboutus_details'));
+	}
+
+    /*show about us details in admin panel*/
 	public function fetch(Request $request) {
 
 		$aboutus_details = Aboutus::first();
@@ -16,7 +25,7 @@ class AboutusController extends Controller
 	}
 
 
-	/*here we update Work Experience*/
+	/*here we update about us*/
 	public function update(Request $request) {
 
 		$request->validate([
@@ -30,7 +39,7 @@ class AboutusController extends Controller
 		$input = Aboutus::where('id', $request->edit_id)
 			->update([
 				'title' => $request->title,
-				'description' => $request->description,
+				'description' => addslashes($request->description),
 			]);
 
 		if ($request->image) {

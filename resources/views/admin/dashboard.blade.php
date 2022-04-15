@@ -255,9 +255,10 @@
                   <div class="d-flex align-items-center justify-content-between justify-content-md-center justify-content-xl-between flex-wrap mb-4">
                     <div>
                       <p class="mb-2 text-md-center text-lg-left">Total Jobs</p>
-                      <h1 class="mb-0">8742</h1>
+                      <h1 class="mb-0">{{ $total_jobs }}</h1>
                     </div>
-                    <i class="typcn typcn-briefcase icon-xl text-secondary"></i>
+                    <i class="typcn typcn-clipboard icon-xl text-secondary"></i>
+                    
                   </div>
                   <!--<canvas id="expense-chart" height="80"></canvas>-->
                 </div>
@@ -269,8 +270,8 @@
                 <div class="card-body">
                   <div class="d-flex align-items-center justify-content-between justify-content-md-center justify-content-xl-between flex-wrap mb-4">
                     <div>
-                      <p class="mb-2 text-md-center text-lg-left">Total Employes</p>
-                      <h1 class="mb-0">47,840</h1>
+                      <p class="mb-2 text-md-center text-lg-left">Total Candidates</p>
+                      <h1 class="mb-0">{{ $total_candidates }}</h1>
                     </div>
                     <i class="typcn typcn-chart-pie icon-xl text-secondary"></i>
                   </div>
@@ -285,9 +286,9 @@
                   <div class="d-flex align-items-center justify-content-between justify-content-md-center justify-content-xl-between flex-wrap mb-4">
                     <div>
                       <p class="mb-2 text-md-center text-lg-left">Total Employers</p>
-                      <h1 class="mb-0">7,243</h1>
+                      <h1 class="mb-0">{{ $total_employers }}</h1>
                     </div>
-                    <i class="typcn typcn-clipboard icon-xl text-secondary"></i>
+                    <i class="typcn typcn-briefcase icon-xl text-secondary"></i>
                   </div>
                   <!--<canvas id="balance-chart" height="80"></canvas>-->
                 </div>
@@ -302,121 +303,85 @@
 			
               <div class="card">
                 <div class="table-responsive pt-3">
-                  <table class="table table-striped project-orders-table">
+                  <table class="table table-striped project-orders-table" id="my_datatable">
                     <thead>
                       <tr>
-                        <th class="ml-5">ID</th>
-                        <th>Project name</th>
-                        <th>Customer</th>
-                        <th>Deadline</th>
-                        <th>Payouts	</th>
-                        <th>Traffic</th>
-                        <th>Actions</th>
+                        <th class="ml-5">#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+            <th>Mobile</th>
+                        <th>Job Title</th>
+            <th>CTC</th>
+                        <th>Job Location</th>
+            <th>Company Name</th>
+                        <th>Applied Date</th>
+            <th>Status</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>#D1</td>
-                        <td>Consectetur adipisicing elit </td>
-                        <td>Beulah Cummings</td>
-                        <td>03 Jan 2019</td>
-                        <td>$ 5235</td>
-                        <td>1.3K</td>
-                        <td>
-                          <div class="d-flex align-items-center">
-                            <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">
-                              Edit
-                              <i class="typcn typcn-edit btn-icon-append"></i>                          
-                            </button>
-                            <button type="button" class="btn btn-danger btn-sm btn-icon-text">
-                              Delete
-                              <i class="typcn typcn-delete-outline btn-icon-append"></i>                          
-                            </button>
-                          </div>
-                        </td>
+                      <?php $j=1;?>
+                      
+            @foreach($all_applied_jobs as $all_applied_job)
+            <tr>
+                        <td><?php echo $j;?>.</td>
+                        <td>{{ $all_applied_job['candidate_name']}}</td>
+            <td>{{ $all_applied_job['candidate_email']}}</td>
+                        <td>{{ $all_applied_job['candidate_mobile_number']}}</td>
+            <td>
+              <a href="{{ url('/admin/job-details/'.$all_applied_job['employer_id'].'/'.$all_applied_job['job_id'])}}" target="_blank" title="Click here for show job details.">
+                {{ $all_applied_job['job_title']}}
+              </a>
+            </td>
+                        <td>{{ $all_applied_job['ctc']}}</td>
+            <td>{{ $all_applied_job['job_location_name']}}</td>
+                        <td>{{ $all_applied_job['company_name']}}</td>
+            <td>{{ date('d-M-Y', strtotime($all_applied_job['applied_date']))}}</td>
+            <td>
+              
+              <div class="btn-group-vertical" role="group" aria-label="Basic example">
+
+                <div class="btn-group">
+                  <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" id="job_status_id_{{$all_applied_job['id']}}">
+                    @if($all_applied_job['status']=='0') 
+                      Rejected 
+                    @elseif($all_applied_job['status']=='1')
+                      New
+                    @elseif($all_applied_job['status']=='2')
+                      Progress
+                    @elseif($all_applied_job['status']=='3')
+                      Selected
+                    @endif
+                  </button>
+                  <div class="dropdown-menu" style="font-size:13px;">
+                    <a class="dropdown-item" onclick="job_status('1','{{$all_applied_job['id']}}')">New</a>
+                    <a class="dropdown-item" onclick="job_status('2','{{$all_applied_job['id']}}')">Progress</a>
+                    <a class="dropdown-item" onclick="job_status('3','{{$all_applied_job['id']}}')">Selected</a>
+                    <a class="dropdown-item" onclick="job_status('0','{{$all_applied_job['id']}}')">Rejected</a>
+                  </div>                          
+                </div>
+              </div>
+            
+            </td>         
                       </tr>
-                      <tr>
-                        <td>#D2</td>
-                        <td>Correlation natural resources silo</td>
-                        <td>Mitchel Dunford</td>
-                        <td>09 Oct 2019</td>
-                        <td>$ 3233</td>
-                        <td>5.4K</td>
-                        <td>
-                          <div class="d-flex align-items-center">
-                            <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">
-                              Edit
-                              <i class="typcn typcn-edit btn-icon-append"></i>                          
-                            </button>
-                            <button type="button" class="btn btn-danger btn-sm btn-icon-text">
-                              Delete
-                              <i class="typcn typcn-delete-outline btn-icon-append"></i>                          
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>#D3</td>
-                        <td>social capital compassion social</td>
-                        <td>Pei Canaday</td>
-                        <td>18 Jun 2019</td>
-                        <td>$ 4311</td>
-                        <td>2.1K</td>
-                        <td>
-                          <div class="d-flex align-items-center">
-                            <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">
-                              Edit
-                              <i class="typcn typcn-edit btn-icon-append"></i>                          
-                            </button>
-                            <button type="button" class="btn btn-danger btn-sm btn-icon-text">
-                              Delete
-                              <i class="typcn typcn-delete-outline btn-icon-append"></i>                          
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>#D4</td>
-                        <td>empower communities thought</td>
-                        <td>Gaynell Sharpton</td>
-                        <td>23 Mar 2019</td>
-                        <td>$ 7743</td>
-                        <td>2.7K</td>
-                        <td>
-                          <div class="d-flex align-items-center">
-                            <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">
-                              Edit
-                              <i class="typcn typcn-edit btn-icon-append"></i>                          
-                            </button>
-                            <button type="button" class="btn btn-danger btn-sm btn-icon-text">
-                              Delete
-                              <i class="typcn typcn-delete-outline btn-icon-append"></i>                          
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>#D5</td>
-                        <td> Targeted effective; mobilize </td>
-                        <td>Audrie Midyett</td>
-                        <td>22 Aug 2019</td>
-                        <td>$ 2455</td>
-                        <td>1.2K</td>
-                        <td>
-                          <div class="d-flex align-items-center">
-                            <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">
-                              Edit
-                              <i class="typcn typcn-edit btn-icon-append"></i>                          
-                            </button>
-                            <button type="button" class="btn btn-danger btn-sm btn-icon-text">
-                              Delete
-                              <i class="typcn typcn-delete-outline btn-icon-append"></i>                          
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
+            <?php $j++;?>
+                      @endforeach
                     </tbody>
                   </table>
+          
+          <div class="row">
+          <div class="col-lg-12 text-center">
+            <div class="pagination-area">
+              <nav>
+                <ul class="page-numbers d-inline-flex">
+        
+        {{$all_applied_jobs->links()}}
+        
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+    
                 </div>
               </div>
             </div>
@@ -428,5 +393,49 @@
 		@include('admin/partials.footer')
 		
       </div>
+
+      <script type="text/javascript">
+    
+    $(document).ready(function() {
+  $('#my_datatable').DataTable({
+    pageLength: 10,
+    filter: true,
+    deferRender: true,
+    scrollY: 200,
+    scrollCollapse: true,
+    scroller: true,
+    "searching": true,
+  });
+});
+    
+    function job_status(status_id, id){
+      
+      console.log(status_id+' / job_status_id_ '+id);
+
+      $.ajax({
+        url: "{{url('admin/update-applied-job-status-admin')}}", 
+        type: "POST",  
+        data:{
+          status_id:status_id,
+          id:id,
+          _token: '{{csrf_token()}}'
+        },
+        success:function(result){
+          
+          /*swal("Poof! Status has been updated!", {
+            icon: "success",
+          });*/ 
+          
+          console.log(result);
+          
+          $("#job_status_id_"+id).html(result);
+            
+         }  
+
+      });
+        
+    }
+    
+  </script>
 	  
 @endsection

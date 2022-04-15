@@ -43,21 +43,20 @@
       <div class="container">
         <div class="about-item">
           <div class="row">
-            <div class="col-md-6 col-lg-3">
+
+            <div class="col-md-12 col-lg-12">
               <div class="about-thumb" data-aos="fade-down" data-aos-duration="1000">
-                <img src="{{ asset('public/img/about/1.jpg')}}" alt="Image-HasTech">
+               @if($aboutus_details['image'])
+               <img src="{{asset('').$aboutus_details['image']}}" alt="Image-HasTech" style="width: 100%; max-height: 400px;">
+               @endif
               </div>
             </div>
-            <div class="col-md-6 col-lg-3">
-              <div class="about-thumb about-thumb-two" data-aos="fade-down" data-aos-duration="1200">
-                <img src="{{ asset('public/img/about/2.jpg')}}" alt="Image-HasTech">
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="about-content" data-aos="fade-down" data-aos-duration="1000">
-                <h4 class="sub-title">// About Finate</h4>
-                <h3 class="title">Finate help your for get your dream job and build your bright career.</h3>
-                <p class="desc">It is a long established fact that a reader will be distracted the readable content of a page when looking at its layout. The point of using is that has more-or-less normal a distribution of letters, as opposed to using 'Content publishing packages web page editors.</p>
+            
+            <div class="col-lg-12">
+              <div class="text-justify" data-aos="fade-down" data-aos-duration="1000">
+                <h4 class="sub-title">&nbsp;</h4>
+                <h3 class="title">{{ $aboutus_details['title']}}</h3>
+                <p class="desc"><?php echo $aboutus_details['description'];?></p>
                 <div class="member-join-content" data-aos="fade-right" data-aos-duration="1200">
                   <div class="member-join-thumb">
                     <ul>

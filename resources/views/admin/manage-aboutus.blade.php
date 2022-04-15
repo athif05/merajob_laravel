@@ -18,6 +18,13 @@
           <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
+
+                @if(session()->has('success'))
+				<div class="alert alert-success">
+					{{ session()->get('success') }}
+				</div>
+				@endif
+				
                   <h4 class="card-title">Manage About-Us</h4>
                   <form method="post" action="{{ route('admin/update-about-us.update')}}" class="forms-sample" enctype="multipart/form-data">
 					@csrf
@@ -73,6 +80,16 @@
         
 		@include('admin/partials.footer')
 		
+		<script type="text/javascript">
+$(function() {
+    $('#description').ckeditor({
+        toolbar: 'Full',
+        enterMode : CKEDITOR.ENTER_BR,
+        shiftEnterMode: CKEDITOR.ENTER_P
+    });
+});
+</script>
+
       </div>
 	  
 @endsection
