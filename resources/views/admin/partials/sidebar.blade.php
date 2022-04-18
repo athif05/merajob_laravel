@@ -250,19 +250,19 @@
 		</div>
 	  </li>
 	  
-	  <!-- <li class="nav-item">
+	  <li class="nav-item">
 		<a class="nav-link" data-toggle="collapse" href="#form-user" aria-expanded="false" aria-controls="form-user">
 		  <i class="typcn typcn-film menu-icon"></i>
-		  <span class="menu-title">Manage Users</span>
+		  <span class="menu-title">Admin Users</span>
 		  <i class="menu-arrow"></i>
 		</a>
 		<div class="collapse" id="form-user">
 		  <ul class="nav flex-column sub-menu">
-			<li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Employees List</a></li>
-			<li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Employers List</a></li>
+			<li class="nav-item"><a class="nav-link" href="{{ url('/admin/manage-role') }}">Manage Role</a></li>
+			<li class="nav-item"><a class="nav-link" href="{{ url('/admin/manage-admin-account') }}">Manage Account</a></li>
 		  </ul>
 		</div>
-	  </li> -->
+	  </li>
 	  
 	  <li class="nav-item">
 		<a class="nav-link" href="{{ url('/admin/contact-us-emails') }}">

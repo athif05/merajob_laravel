@@ -2,8 +2,11 @@
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="navbar-brand-wrapper d-flex justify-content-center">
         <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-          <a class="navbar-brand brand-logo" href="{{ url('/admin') }}"><img src="{{ asset('resources/views/admin/images/logo.svg')}}" alt="logo"/></a>
-          <a class="navbar-brand brand-logo-mini" href="{{ url('/admin') }}"><img src="{{ asset('resources/views/admin/images/logo-mini.svg')}}" alt="logo"/></a>
+          
+          <a class="navbar-brand brand-logo" href="{{ url('/admin') }}"><img src="{{ asset('resources/views/admin/images/bvc-logo.png')}}" alt="logo"/></a>
+
+          <a class="navbar-brand brand-logo-mini" href="{{ url('/admin') }}"><img src="{{ asset('resources/views/admin/images/bvc-logo.png')}}" alt="logo"/></a>
+
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="typcn typcn-th-menu"></span>
           </button>
@@ -13,32 +16,39 @@
         <ul class="navbar-nav mr-lg-2">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="{{ asset('resources/views/admin/images/faces/face5.jpg')}}" alt="profile"/>
-              <span class="nav-profile-name">Eugenia Mullins</span>
+              <img src="{{ asset('resources/views/admin/images/faces/user-icon.png')}}" alt="profile"/>
+              <span class="nav-profile-name">
+
+                @if (Session::has('login_user_data'))
+                
+                    {{ session('login_user_data')[0]['name'] }}
+
+                @endif
+              </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
+              <!-- <a class="dropdown-item">
                 <i class="typcn typcn-cog-outline text-primary"></i>
                 Settings
-              </a>
-              <a class="dropdown-item">
+              </a> -->
+              <a class="dropdown-item" href="{{ url('/admin/logout') }}">
                 <i class="typcn typcn-eject text-primary"></i>
                 Logout
               </a>
             </div>
           </li>
-          <li class="nav-item nav-user-status dropdown">
+          <!-- <li class="nav-item nav-user-status dropdown">
               <p class="mb-0">Last login was 23 hours ago.</p>
-          </li>
+          </li> -->
         </ul>
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-date dropdown">
-            <a class="nav-link d-flex justify-content-center align-items-center" href="javascript:;">
-              <h6 class="date mb-0">Today : Mar 23</h6>
+            <a class="nav-link d-flex justify-content-center align-items-center" href="javascript:void(0);" style="cursor:context-menu;">
+              <h6 class="date mb-0">Today :{{ date('M-d') }}</h6>
               <i class="typcn typcn-calendar"></i>
             </a>
           </li>
-          <li class="nav-item dropdown">
+          <!--<li class="nav-item dropdown">
             <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
               <i class="typcn typcn-cog-outline mx-0"></i>
               <span class="count"></span>
@@ -130,7 +140,7 @@
                 </div>
               </a>
             </div>
-          </li>
+          </li>-->
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
           <span class="typcn typcn-th-menu"></span>
