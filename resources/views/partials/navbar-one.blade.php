@@ -6,8 +6,8 @@
                     <div class="header-top">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="{{ url('/')}}" class="non-sticky"><img src="{{ asset('public/main-home-page/img/logo.png')}}" alt="Finate Job Board HTML Template"></a>
-                            <a href="{{ url('/')}}" class="sticky-logo"><img src="{{ asset('public/main-home-page/img/logo-2.png')}}" alt="Finate Job Board HTML Template"></a>
+                            <a href="{{ url('/')}}" class="non-sticky"><img src="{{ asset('public/main-home-page/img/bvc-logo.png')}}" alt="Finate Job Board HTML Template"></a>
+                            <a href="{{ url('/')}}" class="sticky-logo"><img src="{{ asset('public/main-home-page/img/bvc-logo.png')}}" alt="Finate Job Board HTML Template"></a>
                         </div>
                         <!-- Logo -->
                         <!--<div class="button-buy">

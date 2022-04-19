@@ -30,7 +30,7 @@
             <div class="widget-item widget-about">
               <div class="widget-logo-area">
                 <a href="{{ url('/') }}">
-                  <img class="logo-main" src="{{ asset('public/img/logo-light-theme.png') }}" alt="Logo" />
+                  <img class="logo-main" src="{{ asset('public/img/bvc-logo.png') }}" alt="Logo" />
                 </a>
               </div>
               <p class="desc">That necessitat ecommerce platform that optimi your store popularised the release</p>

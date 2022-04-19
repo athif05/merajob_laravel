@@ -2,7 +2,7 @@
             <div class="header-align-start">
               <div class="header-logo-area">
                 <a href="{{ url('/') }}">
-                  <img class="logo-main" src="{{ asset('public/img/logo-light.png') }}" alt="Logo" />
+                  <img class="logo-main" src="{{ asset('public/img/bvc-logo.png') }}" alt="Logo" />
                   <img class="logo-light" src="{{ asset('public/img/logo-light.png') }}" alt="Logo" />
                 </a>
               </div>
