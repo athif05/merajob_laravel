@@ -132,6 +132,10 @@ Route::get('/admin', function(){
 	return view('admin/index');
 });
 
+Route::get('/admin/no-access', function(){
+	return view('admin/no-access');
+});
+
 Route::post('/login/admin', 'AdminUserController@login')->name('login.admin');
 
 Route::get('/admin/logout', 'AdminUserController@logout');
@@ -398,35 +402,43 @@ Route::post('/admin/delete-blog-author', 'AuthorController@deleteAuthor');
 /* blog author, end here */
 
 
-/* manage role, start here */
-Route::get('/admin/manage-role', 'RoleController@fetch');
+	
 
-Route::get('/admin/role-edit/{id}', 'RoleController@editRole');
+Route::group(['middleware'=>['is_admin']], function(){
 
-Route::post('/admin/update-role/update', 'RoleController@updateRole')->name('admin/update-role.update');
+	/* manage role, start here */
+	Route::get('/admin/manage-role', 'RoleController@fetch');
 
-Route::get('/admin/add-role', 'RoleController@addNewRole');
+	Route::get('/admin/role-edit/{id}', 'RoleController@editRole');
 
-Route::post('/admin/add-new-role/add', 'RoleController@saveNewRole')->name('admin/add-new-role.add');
+	Route::post('/admin/update-role/update', 'RoleController@updateRole')->name('admin/update-role.update');
 
-Route::post('/admin/update-role-status', 'RoleController@updateStatus');
+	Route::get('/admin/add-role', 'RoleController@addNewRole');
 
-Route::post('/admin/delete-role', 'RoleController@deleteRole');
-/* manage role, end here */
+	Route::post('/admin/add-new-role/add', 'RoleController@saveNewRole')->name('admin/add-new-role.add');
 
+	Route::post('/admin/update-role-status', 'RoleController@updateStatus');
 
-/* manage admin account, start here */
-Route::get('/admin/manage-admin-account', 'AdminUserController@fetch');
+	Route::post('/admin/delete-role', 'RoleController@deleteRole');
+	/* manage role, end here */
+	
+	
+	/* manage admin account, start here */
+	//Route::get('/admin/manage-admin-account', 'AdminUserController@fetch')->middleware('is_admin');
 
-Route::get('/admin/admin-account-edit/{id}', 'AdminUserController@editAdminUser');
+	Route::get('/admin/manage-admin-account', 'AdminUserController@fetch');
 
-Route::post('/admin/update-admin-account/update', 'AdminUserController@updateAdminUser')->name('admin/update-admin-account.update');
+	Route::get('/admin/admin-account-edit/{id}', 'AdminUserController@editAdminUser');
 
-Route::get('/admin/add-new-admin-account', 'AdminUserController@addNewAdminUser');
+	Route::post('/admin/update-admin-account/update', 'AdminUserController@updateAdminUser')->name('admin/update-admin-account.update');
 
-Route::post('/admin/add-new-admin-account/add', 'AdminUserController@saveNewAdminUser')->name('admin/add-new-admin-account.add');
+	Route::get('/admin/add-new-admin-account', 'AdminUserController@addNewAdminUser');
 
-Route::post('/admin/update-admin-account-status', 'AdminUserController@updateStatus');
+	Route::post('/admin/add-new-admin-account/add', 'AdminUserController@saveNewAdminUser')->name('admin/add-new-admin-account.add');
 
-Route::post('/admin/delete-admin-account', 'AdminUserController@deleteAdminUser');
-/* manage admin account, end here */
+	Route::post('/admin/update-admin-account-status', 'AdminUserController@updateStatus');
+
+	Route::post('/admin/delete-admin-account', 'AdminUserController@deleteAdminUser');
+	/* manage admin account, end here */
+
+});

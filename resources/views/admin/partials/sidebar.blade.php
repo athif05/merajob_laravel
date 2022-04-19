@@ -250,6 +250,7 @@
 		</div>
 	  </li>
 	  
+	  @if(session('login_user_data')[0]['role_id']==1)
 	  <li class="nav-item">
 		<a class="nav-link" data-toggle="collapse" href="#form-user" aria-expanded="false" aria-controls="form-user">
 		  <i class="typcn typcn-film menu-icon"></i>
@@ -263,6 +264,7 @@
 		  </ul>
 		</div>
 	  </li>
+	  @endif
 	  
 	  <li class="nav-item">
 		<a class="nav-link" href="{{ url('/admin/contact-us-emails') }}">

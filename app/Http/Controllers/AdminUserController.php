@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use DateTime;
+use Cookie;
 
 class AdminUserController extends Controller
 {
@@ -43,9 +44,15 @@ class AdminUserController extends Controller
 
 			if($password==$password_enter){
 
-				Session::put('login_user_data', $results);
+				if($request->has('remember_me')){
+					Cookie::queue('emailAdmin', $request->email,1440);
+					Cookie::queue('passwordAdmin', $request->password,1440);
+				} else {
+					Cookie::queue('emailAdmin', $request->email,-1440);
+					Cookie::queue('passwordAdmin', $request->password,-1440);
+				}
 
-				//Session::put('login_user_data.login_time', $login_time);
+				Session::put('login_user_data', $results);
 
 				if($results[0]['role_id']==1){
 

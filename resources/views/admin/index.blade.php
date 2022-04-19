@@ -46,10 +46,10 @@
               @csrf
 
                 <div class="form-group">
-                  <input type="email" name="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username" value="{{ old('email') }}">
+                  <input type="email" name="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username" @if(Cookie::has('emailAdmin')) value="{{ Cookie::get('emailAdmin')}}" @else value="{{ old('email') }}" @endif>
                 </div>
                 <div class="form-group">
-                  <input type="password" name="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                  <input type="password" name="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password"  @if(Cookie::has('passwordAdmin')) value="{{ Cookie::get('passwordAdmin')}}" @endif>
                 </div>
                 <div class="mt-3">
                   <!-- <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">SIGN IN</a> -->
@@ -58,11 +58,11 @@
                 <div class="my-2 d-flex justify-content-between align-items-center">
                   <div class="form-check">
                     <label class="form-check-label text-muted">
-                      <input type="checkbox" class="form-check-input">
+                      <input type="checkbox" name="remember_me" id="remember_me" class="form-check-input"  @if(Cookie::has('emailAdmin')) checked @endif>
                       Keep me signed in
                     </label>
                   </div>
-                  <a href="#" class="auth-link text-black">Forgot password?</a>
+                  <!-- <a href="#" class="auth-link text-black">Forgot password?</a> -->
                 </div>
                 
                 <!-- <div class="text-center mt-4 font-weight-light">
