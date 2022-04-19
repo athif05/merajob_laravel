@@ -1,3 +1,6 @@
+<?php
+Use App\Blog;
+?>
 @extends("layouts.master")
 
 @section("title")
@@ -44,179 +47,40 @@
         <div class="row justify-content-between flex-xl-row-reverse">
           <div class="col-xl-8">
             <div class="row row-gutter-70">
+
+              @foreach($blogs as $blog)
               <div class="col-sm-6 col-lg-4 col-xl-6">
                 <!--== Start Blog Post Item ==-->
                 <div class="post-item">
                   <div class="thumb">
-                    <a href="{{ url('/blog-details') }}"><img src="{{ asset('public/img/blog/2.jpg')}}" alt="Image" width="370" height="270"></a>
+                    <a href="{{ url('/blog-details/'.$blog['id']) }}" target="_blank"><img src="{{asset('').$blog['image']}}" alt="Image" width="370" height="270"></a>
                   </div>
                   <div class="content">
-                    <div class="author">By <a href="{{ url('/blog')}}">Walter Houston</a></div>
-                    <h4 class="title"><a href="{{ url('/blog-details') }}">All of these amazing features <br>come at an affordable price!</a></h4>
-                    <p>Lorem Ipsum is simpely dummy & text themes print industry orem psumen has been them industry spa also the loep into type setting.</p>
+                    <div class="author">
+                      By <a href="{{ url('/blog')}}">{{ $blog['author_name'] }}</a>
+                    </div>
+                    <h4 class="title">
+                      <a href="{{ url('/blog-details/'.$blog['id']) }}" target="_blank">{{ $blog['title'] }}</a>
+                    </h4>
+                    <p>{!! Str::limit($blog['description'], 250, ' ...') !!}</p>
                     <div class="meta">
-                      <span class="post-date">03 April, 2022</span>
-                      <span class="dots"></span>
-                      <span class="post-time">10 min read</span>
+                      <span class="post-date">{{ date('d-M, Y',strtotime($blog['created_at'])) }}</span>
+                      <!-- <span class="dots"></span>
+                       <span class="post-time">10 min read</span> -->
                     </div>
                   </div>
                 </div>
                 <!--== End Blog Post Item ==-->
               </div>
-              <div class="col-sm-6 col-lg-4 col-xl-6">
-                <!--== Start Blog Post Item ==-->
-                <div class="post-item">
-                  <div class="thumb">
-                    <a href="{{ url('/blog-details') }}"><img src="{{ asset('public/img/blog/3.jpg')}}" alt="Image" width="370" height="270"></a>
-                  </div>
-                  <div class="content">
-                    <div class="author">By <a href="{{ url('/blog')}}">Walter Houston</a></div>
-                    <h4 class="title"><a href="{{ url('/blog-details') }}">With WooLentor's drag-and <br>drop interface for creating...</a></h4>
-                    <p>Lorem Ipsum is simpely dummy & text themes print industry orem psumen has been them industry spa also the loep into type setting.</p>
-                    <div class="meta">
-                      <span class="post-date">03 April, 2022</span>
-                      <span class="dots"></span>
-                      <span class="post-time">10 min read</span>
-                    </div>
-                  </div>
-                </div>
-                <!--== End Blog Post Item ==-->
-              </div>
-              <div class="col-sm-6 col-lg-4 col-xl-6">
-                <!--== Start Blog Post Item ==-->
-                <div class="post-item">
-                  <div class="thumb">
-                    <a href="{{ url('/blog-details') }}"><img src="{{ asset('public/img/blog/4.jpg')}}" alt="Image" width="370" height="270"></a>
-                  </div>
-                  <div class="content">
-                    <div class="author">By <a href="{{ url('/blog')}}">Walter Houston</a></div>
-                    <h4 class="title"><a href="{{ url('/blog-details') }}">With WooLentor's drag-and <br>drop interface for creating...</a></h4>
-                    <p>Lorem Ipsum is simpely dummy & text themes print industry orem psumen has been them industry spa also the loep into type setting.</p>
-                    <div class="meta">
-                      <span class="post-date">03 April, 2022</span>
-                      <span class="dots"></span>
-                      <span class="post-time">10 min read</span>
-                    </div>
-                  </div>
-                </div>
-                <!--== End Blog Post Item ==-->
-              </div>
-              <div class="col-sm-6 col-lg-4 col-xl-6">
-                <!--== Start Blog Post Item ==-->
-                <div class="post-item">
-                  <div class="thumb">
-                    <a href="{{ url('/blog-details') }}"><img src="{{ asset('public/img/blog/5.jpg')}}" alt="Image" width="370" height="270"></a>
-                  </div>
-                  <div class="content">
-                    <div class="author">By <a href="{{ url('/blog')}}">Walter Houston</a></div>
-                    <h4 class="title"><a href="{{ url('/blog-details') }}">Make your store stand out <br>from the others by converting</a></h4>
-                    <p>Lorem Ipsum is simpely dummy & text themes print industry orem psumen has been them industry spa also the loep into type setting.</p>
-                    <div class="meta">
-                      <span class="post-date">03 April, 2021</span>
-                      <span class="dots"></span>
-                      <span class="post-time">10 min read</span>
-                    </div>
-                  </div>
-                </div>
-                <!--== End Blog Post Item ==-->
-              </div>
-              <div class="col-sm-6 col-lg-4 col-xl-6">
-                <!--== Start Blog Post Item ==-->
-                <div class="post-item">
-                  <div class="thumb">
-                    <a href="{{ url('/blog-details') }}"><img src="{{ asset('public/img/blog/6.jpg')}}" alt="Image" width="370" height="270"></a>
-                  </div>
-                  <div class="content">
-                    <div class="author">By <a href="{{ url('/blog')}}">Walter Houston</a></div>
-                    <h4 class="title"><a href="{{ url('/blog-details') }}">All of these amazing features <br>come at an affordable price!</a></h4>
-                    <p>Lorem Ipsum is simpely dummy & text themes print industry orem psumen has been them industry spa also the loep into type setting.</p>
-                    <div class="meta">
-                      <span class="post-date">03 April, 2022</span>
-                      <span class="dots"></span>
-                      <span class="post-time">10 min read</span>
-                    </div>
-                  </div>
-                </div>
-                <!--== End Blog Post Item ==-->
-              </div>
-              <div class="col-sm-6 col-lg-4 col-xl-6">
-                <!--== Start Blog Post Item ==-->
-                <div class="post-item">
-                  <div class="thumb">
-                    <a href="{{ url('/blog-details') }}"><img src="{{ asset('public/img/blog/7.jpg')}}" alt="Image" width="370" height="270"></a>
-                  </div>
-                  <div class="content">
-                    <div class="author">By <a href="{{ url('/blog')}}">Walter Houston</a></div>
-                    <h4 class="title"><a href="{{ url('/blog-details') }}">With WooLentor's drag-and <br>drop interface for creating...</a></h4>
-                    <p>Lorem Ipsum is simpely dummy & text themes print industry orem psumen has been them industry spa also the loep into type setting.</p>
-                    <div class="meta">
-                      <span class="post-date">03 April, 2022</span>
-                      <span class="dots"></span>
-                      <span class="post-time">10 min read</span>
-                    </div>
-                  </div>
-                </div>
-                <!--== End Blog Post Item ==-->
-              </div>
-              <div class="col-sm-6 col-lg-4 col-xl-6">
-                <!--== Start Blog Post Item ==-->
-                <div class="post-item">
-                  <div class="thumb">
-                    <a href="{{ url('/blog-details') }}"><img src="{{ asset('public/img/blog/8.jpg')}}" alt="Image" width="370" height="270"></a>
-                  </div>
-                  <div class="content">
-                    <div class="author">By <a href="{{ url('/blog')}}">Walter Houston</a></div>
-                    <h4 class="title"><a href="{{ url('/blog-details') }}">With WooLentor's drag-and <br>drop interface for creating...</a></h4>
-                    <p>Lorem Ipsum is simpely dummy & text themes print industry orem psumen has been them industry spa also the loep into type setting.</p>
-                    <div class="meta">
-                      <span class="post-date">03 April, 2022</span>
-                      <span class="dots"></span>
-                      <span class="post-time">10 min read</span>
-                    </div>
-                  </div>
-                </div>
-                <!--== End Blog Post Item ==-->
-              </div>
-              <div class="col-sm-6 col-lg-4 col-xl-6">
-                <!--== Start Blog Post Item ==-->
-                <div class="post-item">
-                  <div class="thumb">
-                    <a href="{{ url('/blog-details') }}"><img src="{{ asset('public/img/blog/9.jpg')}}" alt="Image" width="370" height="270"></a>
-                  </div>
-                  <div class="content">
-                    <div class="author">By <a href="{{ url('/blog')}}">Walter Houston</a></div>
-                    <h4 class="title"><a href="{{ url('/blog-details') }}">Make your store stand out <br>from the others by converting</a></h4>
-                    <p>Lorem Ipsum is simpely dummy & text themes print industry orem psumen has been them industry spa also the loep into type setting.</p>
-                    <div class="meta">
-                      <span class="post-date">03 April, 2021</span>
-                      <span class="dots"></span>
-                      <span class="post-time">10 min read</span>
-                    </div>
-                  </div>
-                </div>
-                <!--== End Blog Post Item ==-->
-              </div>
+              @endforeach
+
               <div class="col-12 text-left">
                 <div class="pagination-area">
                   <nav>
                     <ul class="page-numbers d-inline-flex">
-                      <li>
-                        <a class="page-number active" href="{{ url('/blog')}}">1</a>
-                      </li>
-                      <li>
-                        <a class="page-number" href="{{ url('/blog')}}">2</a>
-                      </li>
-                      <li>
-                        <a class="page-number" href="{{ url('/blog')}}">3</a>
-                      </li>
-                      <li>
-                        <a class="page-number" href="{{ url('/blog')}}">4</a>
-                      </li>
-                      <li>
-                        <a class="page-number next" href="{{ url('/blog')}}">
-                          <i class="icofont-long-arrow-right"></i>
-                        </a>
-                      </li>
+                      
+                      {{$blogs->links()}}
+
                     </ul>
                   </nav>
                 </div>
@@ -228,9 +92,9 @@
               <div class="widget-item">
                 <div class="widget-body">
                   <div class="widget-search-box">
-                    <form action="#" method="post">
+                    <form action="{{ route('blogs.search') }}" method="get">
                       <div class="form-input-item">
-                        <input type="search" id="search2" placeholder="Search here">
+                        <input type="search" name="searching_keyword" id="search2" placeholder="Search here" value="{{request()->get('searching_keyword')}}">
                         <button type="submit" class="btn-src">
                           <i class="icofont-search"></i>
                         </button>
@@ -246,12 +110,12 @@
                 <div class="widget-body">
                   <div class="widget-categories">
                     <ul>
-                      <li><a href="job.html">Commercial Movers<span>(16)</span></a></li>
-                      <li><a href="job.html">Air Freight Services<span>(03)</span></a></li>
-                      <li><a href="job.html">Drone Services<span>(08)</span></a></li>
-                      <li><a href="job.html">Road Freight<span>(18)</span></a></li>
-                      <li><a href="job.html">Warehousing<span>(02)</span></a></li>
-                      <li><a href="job.html">Consulting Storage<span>(14)</span></a></li>
+                      @foreach($blogCategories as $blogCategory)
+                      @php $blogsCount= Blog::blogsCount($blogCategory['id']) @endphp
+                      <li>
+                        <a href="{{ url('/blogs/category/'.$blogCategory['id']) }}">{{ $blogCategory['name'] }}<span>({{$blogsCount}})</span></a>
+                      </li>
+                      @endforeach
                     </ul>
                   </div>
                 </div>
@@ -262,54 +126,27 @@
                 </div>
                 <div class="widget-body">
                   <div class="widget-post">
+
+                    @foreach($latestBlogs as $latestBlog)
                     <div class="widget-blog-post">
                       <div class="thumb">
-                        <a href="{{ url('/blog-details') }}"><img src="{{ asset('public/img/blog/s1.jpg')}}" alt="Image" width="71" height="70"></a>
+                        <a href="{{ url('/blog-details/'.$latestBlog['id']) }}"><img src="{{asset('').$latestBlog['image']}}" alt="Image" style="width: 71px; height: 71px;" target="_blank"></a>
                       </div>
                       <div class="content">
-                        <h4><a href="{{ url('/blog-details') }}">This includes shipment <br>of raw materials.</a></h4>
+                        <h4>
+                          <a href="{{ url('/blog-details/'.$latestBlog['id']) }}" target="_blank">{!! Str::limit($latestBlog['title'], 40, ' ...') !!}</a>
+                        </h4>
                         <div class="meta">
-                          <span class="post-date"><i class="icofont-ui-calendar"></i> 10 August, 2021</span>
+                          <span class="post-date"><i class="icofont-ui-calendar"></i> {{ date('d-M, Y',strtotime($latestBlog['created_at'])) }}</span>
                         </div>
                       </div>
                     </div>
-                    <div class="widget-blog-post">
-                      <div class="thumb">
-                        <a href="{{ url('/blog-details') }}"><img src="{{ asset('public/img/blog/s2.jpg')}}" alt="Image" width="71" height="70"></a>
-                      </div>
-                      <div class="content">
-                        <h4><a href="{{ url('/blog-details') }}">All of these amazing <br>features come price.</a></h4>
-                        <div class="meta">
-                          <span class="post-date"><i class="icofont-ui-calendar"></i> 18 August, 2021</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="widget-blog-post">
-                      <div class="thumb">
-                        <a href="{{ url('/blog-details') }}"><img src="{{ asset('public/img/blog/s3.jpg')}}" alt="Image" width="71" height="70"></a>
-                      </div>
-                      <div class="content">
-                        <h4><a href="{{ url('/blog-details') }}">This includes shipment <br>of raw materials.</a></h4>
-                        <div class="meta">
-                          <span class="post-date"><i class="icofont-ui-calendar"></i> 19 August, 2021</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="widget-blog-post">
-                      <div class="thumb">
-                        <a href="{{ url('/blog-details') }}"><img src="{{ asset('public/img/blog/s4.jpg')}}" alt="Image" width="71" height="70"></a>
-                      </div>
-                      <div class="content">
-                        <h4><a href="{{ url('/blog-details') }}">All of these amazing <br>features come price.</a></h4>
-                        <div class="meta">
-                          <span class="post-date"><i class="icofont-ui-calendar"></i> 10 August, 2021</span>
-                        </div>
-                      </div>
-                    </div>
+                    @endforeach
+                    
                   </div>
                 </div>
               </div>
-              <div class="widget-item mb-md-0">
+              <!-- <div class="widget-item mb-md-0">
                 <div class="widget-title">
                   <h3 class="title">Popular Tags</h3>
                 </div>
@@ -327,7 +164,7 @@
                     </ul>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>

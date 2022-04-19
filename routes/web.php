@@ -63,13 +63,22 @@ Route::get('/edit-post-job/{empr_id}/{id}', 'AllJobController@edit_job');
 
 Route::post('update-job/update', 'AllJobController@update')->name('update-job.update');
 
-Route::get('/blog', function () {
+/*Route::get('/blog', function () {
 	return view('blog');
 });
 
 Route::get('/blog-details', function () {
 	return view('blog-details');
 });
+*/
+
+Route::get('/blog', 'BlogController@showAll');
+
+Route::get('/blog-details/{id}', 'BlogController@showBlogDetails');
+
+Route::get('/blogs/search', 'BlogController@show_blogs_search')->name('blogs.search');
+
+Route::get('/blogs/category/{id}', 'BlogController@blogs_search_category')->name('blogs.category');
 
 Route::get('/about-us', 'AboutusController@index');
 

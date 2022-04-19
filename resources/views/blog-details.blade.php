@@ -46,79 +46,29 @@
             <div class="col-12">
               <div class="post-details-info text-center">
                 <div class="meta">
-                  <span class="author">By <a href="{{ url('/blog')}}">Harold Leonard</a></span>
+                  <span class="author">By <a href="{{ url('/blog')}}">{{ $blogDetails['author_name']}}</a></span>
                   <span class="dots"></span>
-                  <span class="post-date">03 April, 21 </span>
-                  <span class="dots"></span>
-                  <span class="post-time"> 10 min read</span>
+                  <span class="post-date">{{ date('d-M, Y',strtotime($blogDetails['created_at'])) }}</span>
+                  <!-- <span class="dots"></span>
+                  <span class="post-time"> 10 min read</span> -->
                 </div>
-                <h4 class="title">Simple pricing structure you have the flexibility to be able to grow your business in an effective.</h4>
-                <div class="widget-tags">
+                <h4 class="title">{{ $blogDetails['title']}}</h4>
+                <!-- <div class="widget-tags">
                   <ul>
                     <li><a href="{{ url('/blog')}}">Agency</a></li>
                     <li><a class="active" href="{{ url('/blog')}}">Circular</a></li>
                     <li><a href="{{ url('/blog')}}">Business</a></li>
                     <li><a href="{{ url('/blog')}}">Corporate</a></li>
                   </ul>
-                </div>
+                </div> -->
               </div>
               <div class="post-details-thumb">
-                <img class="w-100" src="{{ asset('public/img/blog/details1.jpg')}}" alt="Image" width="1170" height="550">
+                <img class="w-100" src="{{asset('').$blogDetails['image']}}" alt="Image" style="width: 100%; max-height: 450px;">
               </div>
             </div>
             <div class="col-lg-10">
               <div class="post-details-content">
-                <h4 class="desc-title">The job board technology solution for those looking to setup and operate their own job board, through to those who have an established job.</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry has been industry standard dummy text ever since the a galley type and scrambe make type specimen book has survived not only five centuries text of the printing and typesetin indus standard dummy text everem since the 1500s, when an unknown printer.</p>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry has been industry standard dummy text ever since the a galley type and scrambe make type specimen book has survived not only five centuries text of the printing and typesetin indus standard dummy text everem since the 1500s, when an unknown printer Lorem Ipsum is simply dummy text of the printing and typesetting industry has been industry standar and scrambe make type specimen book has survived not only five centuries text of the printing and typesetin indus standard dummy text everem since the 1500s, when an unknown printer.</p>
-                <div class="post-details-content-list">
-                  <h4 class="title">Table of Content:</h4>
-                  <ul class="list-style">
-                    <li>
-                      <a href="{{ url('/blog-details') }}"><i class="icofont-double-right"></i>It was popularised in the 1960s with the release of Letraset sheets containing</a>
-                    </li>
-                    <li>
-                      <a href="{{ url('/blog-details') }}"><i class="icofont-double-right"></i> Many desktop publishing packages and web page editors now use</a>
-                    </li>
-                    <li>
-                      <a href="{{ url('/blog-details') }}"><i class="icofont-double-right"></i> It was popularised in the 1960s with the release of Letraset sheets containing</a>
-                    </li>
-                    <li>
-                      <a href="{{ url('/blog-details') }}"><i class="icofont-double-right"></i> Many desktop publishing packages and web page editors now use</a>
-                    </li>
-                    <li>
-                      <a href="{{ url('/blog-details') }}"><i class="icofont-double-right"></i> It was popularised in the 1960s with the release of Letraset sheets containing</a>
-                    </li>
-                  </ul>
-                </div>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry has been industry standard dummy text ever since the a galley type and scrambe make type specimen book has survived not only five centuries text of the printing and typesetin indus standard dummy text everem since the 1500s, when an unknown printer Lorem Ipsum is simply dummy text of the printing and typesetting industry has been industry standar and scrambe make type specimen book has survived not only five centuries text of the printing and typesetin indus standard dummy text everem since the 1500s, when an unknown printer.</p>
-                <h4 class="desc-title2">Our company fails the real world test in all kinds of ways.</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry has been industry standard dummy text ever since the a galley type and scrambe make type specimen book has survived not only five centuries text of the printing and typesetin indus standard dummy text everem since the 1500s, when an unknown printer.</p>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry has been industry standard dummy text ever since the a galley type and scrambe make type specimen book has survived not only five centuries text of the printing and typesetin indus standard dummy text everem since the 1500s, when an unknown printer Lorem Ipsum is simply dummy text of the printing and typesetting industry has been industry standar and scrambe make type specimen book has survived not only five centuries text of the printing and typesetin indus standard dummy text everem since the 1500s, when an unknown printer.</p>
-                <div class="content-thumb">
-                  <img class="w-100" src="{{ asset('public/img/blog/details2.jpg')}}" alt="Image" width="970" height="450">
-                </div>
-                <h4 class="desc-title3">Well, that wasn’t the only unconventional thing 37Signals did on their way up.</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry has been industry standard dummy text ever since the a galley type and scrambe make type specimen book has survived not only five centuries text of the printing and typesetin indus standard dummy text everem since the 1500s, when an unknown printer Lorem Ipsum is simply dummy text of the printing and typesetting industry has been industry standar and scrambe make type specimen book has survived not only five centuries text of the printing and typesetin indus standard dummy text everem since the 1500s, when an unknown printer.</p>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry has been industry standard dummy text ever since the a galley type and scrambe make type specimen book has survived not only five centuries text of the printing and typesetin indus standard dummy text everem since the 1500s, when an unknown printer Lorem Ipsum is simply dummy text of the printing and typesetting industry has been industry standar and scrambe make type specimen book has survived not only five centuries text of the printing and typesetin indus standard dummy text everem since the 1500s, when an unknown printer.</p>
-                <blockquote class="blockquote-item">
-                  <div class="content">
-                    <p>2,83k People Receive Our Weekly WordPress Related Newsletter.</p>
-                  </div>
-                </blockquote>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy ever since the 1500s, when an unknown printer took a galley of type and scirambled it to make a type specimen book. It has survive only five centuries, but also the leap into electronic typesetting, remaining the essentially unchanged. It was popularised in the 1960 the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing crambled it to make specimen book. It has survived nots only five centuries, but also the leap into.</p>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy ever since the 1500s, when an unknown printer took a galley of type and scirambled it to make a type specimen book. It has survive only five centuries, but also the leap into electronic typesetting, remaining the essentially unchanged. It was popularised in the 1960 the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing crambled it to make specimen book. It has survived nots only five centuries, but also the leap into.</p>
-                <div class="post-details-footer">
-                  <div class="widget-social-icons">
-                    <span>Share this article:</span>
-                    <div class="social-icons">
-                      <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="icofont-facebook"></i></a>
-                      <a href="https://www.skype.com/" target="_blank" rel="noopener"><i class="icofont-skype"></i></a>
-                      <a href="https://twitter.com/" target="_blank" rel="noopener"><i class="icofont-twitter"></i></a>
-                      <a href="https://www.linkedin.com/signup" target="_blank" rel="noopener"><i class="icofont-linkedin"></i></a>
-                    </div>
-                  </div>
-                </div>
+                {!! $blogDetails['description'] !!}                
               </div>
             </div>
           </div>
@@ -147,86 +97,34 @@
               <div class="related-posts">
                 <div class="swiper related-post-slider-container">
                   <div class="swiper-wrapper related-post-slider">
+                    
+                    @foreach($latestBlogs as $latestBlog)
                     <div class="swiper-slide">
                       <!--== Start Blog Post Item ==-->
                       <div class="post-item2">
                         <div class="thumb">
-                          <a href="{{ url('/blog-details') }}">
-                            <img src="{{ asset('public/img/blog/10.jpg')}}" alt="Image" width="350" height="270">
+                          <a href="{{ url('/blog-details/'.$latestBlog['id']) }}">
+                            <img src="{{asset('').$latestBlog['image']}}" alt="Image" width="350" height="270">
                           </a>
                         </div>
                         <div class="content">
-                          <h5 class="author">By <a href="{{ url('/blog')}}">Walter Houston</a></h5>
-                          <h4 class="title"><a href="{{ url('/blog-details') }}">Why wild animal welfare in addition to farmed animal...</a></h4>
+                          <h5 class="author">
+                            By <a href="#">
+                              {{$latestBlog['author_name']}}
+                            </a>
+                          </h5>
+                          <h4 class="title"><a href="{{ url('/blog-details/'.$latestBlog['id']) }}">{!! Str::limit($latestBlog['title'], 70, ' ...') !!}</a></h4>
                           <div class="meta">
-                            <span class="post-date">03 April, 2021</span>
-                            <span class="dots"></span>
-                            <span class="post-time">10 min read</span>
+                            <span class="post-date">{{ date('d-M, Y',strtotime($latestBlog['created_at'])) }}</span>
+                           <!--  <span class="dots"></span>
+                            <span class="post-time">10 min read</span> -->
                           </div>
                         </div>
                       </div>
                       <!--== End Blog Post Item ==-->
                     </div>
-                    <div class="swiper-slide">
-                      <!--== Start Blog Post Item ==-->
-                      <div class="post-item2">
-                        <div class="thumb">
-                          <a href="{{ url('/blog-details') }}">
-                            <img src="{{ asset('public/img/blog/11.jpg')}}" alt="Image" width="350" height="270">
-                          </a>
-                        </div>
-                        <div class="content">
-                          <h5 class="author">By <a href="{{ url('/blog')}}">Walter Houston</a></h5>
-                          <h4 class="title"><a href="{{ url('/blog-details') }}">Organizations and individual advocates around the world...</a></h4>
-                          <div class="meta">
-                            <span class="post-date">03 April, 2021</span>
-                            <span class="dots"></span>
-                            <span class="post-time">10 min read</span>
-                          </div>
-                        </div>
-                      </div>
-                      <!--== End Blog Post Item ==-->
-                    </div>
-                    <div class="swiper-slide">
-                      <!--== Start Blog Post Item ==-->
-                      <div class="post-item2">
-                        <div class="thumb">
-                          <a href="{{ url('/blog-details') }}">
-                            <img src="{{ asset('public/img/blog/12.jpg')}}" alt="Image" width="350" height="270">
-                          </a>
-                        </div>
-                        <div class="content">
-                          <h5 class="author">By <a href="{{ url('/blog')}}">Walter Houston</a></h5>
-                          <h4 class="title"><a href="{{ url('/blog-details') }}">It is not currently possible for us to have a good sense.</a></h4>
-                          <div class="meta">
-                            <span class="post-date">03 April, 2021</span>
-                            <span class="dots"></span>
-                            <span class="post-time">10 min read</span>
-                          </div>
-                        </div>
-                      </div>
-                      <!--== End Blog Post Item ==-->
-                    </div>
-                    <div class="swiper-slide">
-                      <!--== Start Blog Post Item ==-->
-                      <div class="post-item2">
-                        <div class="thumb">
-                          <a href="{{ url('/blog-details') }}">
-                            <img src="{{ asset('public/img/blog/3.jpg')}}" alt="Image" width="350" height="270">
-                          </a>
-                        </div>
-                        <div class="content">
-                          <h5 class="author">By <a href="{{ url('/blog')}}">Walter Houston</a></h5>
-                          <h4 class="title"><a href="{{ url('/blog-details') }}">Why wild animal welfare in addition to farmed animal...</a></h4>
-                          <div class="meta">
-                            <span class="post-date">03 April, 2021</span>
-                            <span class="dots"></span>
-                            <span class="post-time">10 min read</span>
-                          </div>
-                        </div>
-                      </div>
-                      <!--== End Blog Post Item ==-->
-                    </div>
+                    @endforeach
+
                   </div>
                 </div>
               </div>
