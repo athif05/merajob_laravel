@@ -77,8 +77,9 @@
 								<img src="{{asset('').$blog['image']}}" style="width: 100px; height: 120px; border-radius: 0px;">		
 							@endif
                         </td>
-                        <td>{{ $blog['author_name']}}</td>
+                        
                         <td>{{ $blog['blog_category_name']}}</td>
+                        <td>{{ $blog['author_name']}}</td>
                         <td>
                           <div class="d-flex align-items-center">
                             <a href="{{ url('/admin/blog-edit/'.$blog['id'])}}">
