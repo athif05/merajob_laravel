@@ -8,17 +8,17 @@
   <title>Admin | {{ env('MY_SITE_NAME') }}</title>
 
   <!--== Favicon ==-->
-  <link rel="shortcut icon" href="{{ asset('resources/views/admin/images/favicon.png')}}" />
+  <link rel="shortcut icon" href="{{ asset('../resources/views/admin/images/favicon.png')}}" />
 
   <!-- base:css -->
-  <link rel="stylesheet" href="{{ asset('resources/views/admin/vendors/typicons/typicons.css')}}">
-  <link rel="stylesheet" href="{{ asset('resources/views/admin/vendors/css/vendor.bundle.base.css')}}">
+  <link rel="stylesheet" href="{{ asset('../resources/views/admin/vendors/typicons/typicons.css')}}">
+  <link rel="stylesheet" href="{{ asset('../resources/views/admin/vendors/css/vendor.bundle.base.css')}}">
 
   <!-- endinject -->
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="{{ asset('resources/views/admin/css/vertical-layout-light/style.css')}}">
+  <link rel="stylesheet" href="{{ asset('../resources/views/admin/css/vertical-layout-light/style.css')}}">
   <!-- endinject -->
   
 </head>
@@ -31,7 +31,7 @@
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
               <div class="brand-logo text-center">
-                <img src="{{ asset('resources/views/admin/images/bvc-logo.png')}}" alt="logo">
+                <img src="{{ asset('../resources/views/admin/images/bvc-logo.png')}}" alt="logo">
               </div>
               <h4>Hello! let's get started</h4>
               <h6 class="font-weight-light">Sign in to continue.</h6>
@@ -79,14 +79,14 @@
   </div>
   <!-- container-scroller -->
   <!-- base:js -->
-  <script src="{{ asset('resources/views/admin/vendors/js/vendor.bundle.base.js')}}"></script>
+  <script src="{{ asset('../resources/views/admin/vendors/js/vendor.bundle.base.js')}}"></script>
   <!-- endinject -->
   <!-- inject:js -->
-  <script src="{{ asset('resources/views/admin/js/off-canvas.js')}}"></script>
-  <script src="{{ asset('resources/views/admin/js/hoverable-collapse.js')}}"></script>
-  <script src="{{ asset('resources/views/admin/js/template.js')}}"></script>
-  <script src="{{ asset('resources/views/admin/js/settings.js')}}"></script>
-  <script src="{{ asset('resources/views/admin/js/todolist.js')}}"></script>
+  <script src="{{ asset('../resources/views/admin/js/off-canvas.js')}}"></script>
+  <script src="{{ asset('../resources/views/admin/js/hoverable-collapse.js')}}"></script>
+  <script src="{{ asset('../resources/views/admin/js/template.js')}}"></script>
+  <script src="{{ asset('../resources/views/admin/js/settings.js')}}"></script>
+  <script src="{{ asset('../resources/views/admin/js/todolist.js')}}"></script>
   <!-- endinject -->
 </body>
 

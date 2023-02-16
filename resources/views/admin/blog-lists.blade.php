@@ -62,19 +62,20 @@
                         <td><?php echo $j;?>.</td>
                         <td>{{ $blog['title']}}</td>
                         <td>
-                        	<div id="read_less_span_{{ $blog['id']}}">
+                        	<div id="read_less_span_{{ $blog['id']}}"style="font-size:14px!important;">
                         		<?php echo substr($blog['description'],0,40);?>
                         		<span style="color: red; cursor: pointer;" onclick="read_more('1',{{$blog['id']}})">Read More...</span>
                         	</div>
 
-                        	<div id="read_more_span_{{ $blog['id']}}" style="display: none;">
+                        	<div id="read_more_span_{{ $blog['id']}}" style="display: none;font-size:14px!important;">
                         		<?php echo $blog['description'];?>
                         		<span style="color: green; cursor: pointer;" onclick="read_more('2',{{$blog['id']}})">Read Less...</span>
                         	</div>
                         </td>
                         <td>
                         	@if($blog['image'])
-								<img src="{{asset('').$blog['image']}}" style="width: 100px; height: 120px; border-radius: 0px;">		
+							<?php $img_path=str_replace('/public//','/',(asset('').$blog['image']));?>
+								<img src="{{ $img_path }}" style="width: 100px; height: 120px; border-radius: 0px;">		
 							@endif
                         </td>
                         

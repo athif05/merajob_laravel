@@ -114,7 +114,7 @@
 					</div>
 					<ul class="chat-list">
 					  <li class="list active">
-						<div class="profile"><img src="{{ asset('resources/views/admin/images/faces/face1.jpg')}}" alt="image"><span class="online"></span></div>
+						<div class="profile"><img src="{{ asset('../resources/views/admin/images/faces/face1.jpg')}}" alt="image"><span class="online"></span></div>
 						<div class="info">
 						  <p>Thomas Douglas</p>
 						  <p>Available</p>
@@ -122,7 +122,7 @@
 						<small class="text-muted my-auto">19 min</small>
 					  </li>
 					  <li class="list">
-						<div class="profile"><img src="{{ asset('resources/views/admin/images/faces/face2.jpg')}}" alt="image"><span class="offline"></span></div>
+						<div class="profile"><img src="{{ asset('../resources/views/admin/images/faces/face2.jpg')}}" alt="image"><span class="offline"></span></div>
 						<div class="info">
 						  <div class="wrapper d-flex">
 							<p>Catherine</p>
@@ -133,7 +133,7 @@
 						<small class="text-muted my-auto">23 min</small>
 					  </li>
 					  <li class="list">
-						<div class="profile"><img src="{{ asset('resources/views/admin/images/faces/face3.jpg')}}" alt="image"><span class="online"></span></div>
+						<div class="profile"><img src="{{ asset('../resources/views/admin/images/faces/face3.jpg')}}" alt="image"><span class="online"></span></div>
 						<div class="info">
 						  <p>Daniel Russell</p>
 						  <p>Available</p>
@@ -141,7 +141,7 @@
 						<small class="text-muted my-auto">14 min</small>
 					  </li>
 					  <li class="list">
-						<div class="profile"><img src="{{ asset('resources/views/admin/images/faces/face4.jpg')}}" alt="image"><span class="offline"></span></div>
+						<div class="profile"><img src="{{ asset('../resources/views/admin/images/faces/face4.jpg')}}" alt="image"><span class="offline"></span></div>
 						<div class="info">
 						  <p>James Richardson</p>
 						  <p>Away</p>
@@ -149,7 +149,7 @@
 						<small class="text-muted my-auto">2 min</small>
 					  </li>
 					  <li class="list">
-						<div class="profile"><img src="{{ asset('resources/views/admin/images/faces/face5.jpg')}}" alt="image"><span class="online"></span></div>
+						<div class="profile"><img src="{{ asset('../resources/views/admin/images/faces/face5.jpg')}}" alt="image"><span class="online"></span></div>
 						<div class="info">
 						  <p>Madeline Kennedy</p>
 						  <p>Available</p>
@@ -157,7 +157,7 @@
 						<small class="text-muted my-auto">5 min</small>
 					  </li>
 					  <li class="list">
-						<div class="profile"><img src="{{ asset('resources/views/admin/images/faces/face6.jpg')}}" alt="image"><span class="online"></span></div>
+						<div class="profile"><img src="{{ asset('../resources/views/admin/images/faces/face6.jpg')}}" alt="image"><span class="online"></span></div>
 						<div class="info">
 						  <p>Sarah Graves</p>
 						  <p>Available</p>
@@ -182,14 +182,14 @@
 		</a>
 	  </li>
 	  
-	  <li class="nav-item">
+	  <!-- <li class="nav-item">
 		<a class="nav-link" href="{{ url('/admin/all-applied-jobs') }}">
 		  <i class="typcn typcn-document-text menu-icon"></i>
 		  <span class="menu-title">All Applied Jobs</span>
 		</a>
-	  </li>
+	  </li> -->
 	  
-	  <li class="nav-item">
+	  <!-- <li class="nav-item">
 		<a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
 		  <i class="typcn typcn-document-text menu-icon"></i>
 		  <span class="menu-title">Manage Employes</span>
@@ -201,53 +201,49 @@
 			<li class="nav-item"> <a class="nav-link" href="{{ url('/admin/manage-qualifications') }}">Qualifications</a></li>
 		  </ul>
 		</div>
-	  </li>
+	  </li> -->
+	  
 	  
 	  <li class="nav-item">
-		<a class="nav-link" data-toggle="collapse" href="#ui-employers" aria-expanded="false" aria-controls="ui-employers">
+		<a class="nav-link" href="{{ url('/admin/blog-lists') }}">
+		  <i class="typcn typcn-book menu-icon"></i>
+		  <span class="menu-title">Blog List</span>
+		</a>
+	  </li>
+
+	  <li class="nav-item">
+		<a class="nav-link" href="{{ url('/admin/manage-blog-categories') }}">
+		  <i class="typcn typcn-cog menu-icon"></i>
+		  <span class="menu-title">Blog Category</span>
+		</a>
+	  </li>
+
+	  <li class="nav-item">
+		<a class="nav-link" href="{{ url('/admin/manage-blog-authors') }}">
+		  <i class="typcn typcn-pen menu-icon"></i>
+		  <span class="menu-title">Blog Author</span>
+		</a>
+	  </li>
+
+	  <li class="nav-item">
+		<a class="nav-link" href="{{ url('/admin/about-us') }}">
+		  <i class="typcn typcn-home menu-icon"></i>
+		  <span class="menu-title">About Us</span>
+		</a>
+	  </li>
+
+	  <li class="nav-item">
+		<a class="nav-link" href="{{ url('/admin/contact-us') }}">
+		  <i class="typcn typcn-mail menu-icon"></i>
+		  <span class="menu-title">Contact Us</span>
+		</a>
+	  </li>
+
+	  <li class="nav-item">
+		<a class="nav-link" href="{{ url('/admin/contact-us-emails') }}">
 		  <i class="typcn typcn-document-text menu-icon"></i>
-		  <span class="menu-title">Manage Employers</span>
-		  <i class="menu-arrow"></i>
+		  <span class="menu-title">Contact Message</span>
 		</a>
-		<div class="collapse" id="ui-employers">
-		  <ul class="nav flex-column sub-menu">
-			<li class="nav-item"> <a class="nav-link" href="{{ url('/admin/employers-list') }}">Employers List</a></li>
-			<li class="nav-item"> <a class="nav-link" href="{{ url('/admin/manage-company-domains') }}">Company Domains</a></li>
-		  </ul>
-		</div>
-	  </li>
-	  
-	  <li class="nav-item">
-		<a class="nav-link" data-toggle="collapse" href="#ui-jobs" aria-expanded="false" aria-controls="ui-jobs">
-		  <i class="typcn typcn-document-text menu-icon"></i>
-		  <span class="menu-title">Manage Jobs</span>
-		  <i class="menu-arrow"></i>
-		</a>
-		<div class="collapse" id="ui-jobs">
-		  <ul class="nav flex-column sub-menu">
-			<li class="nav-item"> <a class="nav-link" href="{{ url('/admin/all-job-lists') }}">Jobs List</a></li>
-			<li class="nav-item"> <a class="nav-link" href="{{ url('/admin/manage-job-categories') }}">Job Category</a></li>
-			<li class="nav-item"> <a class="nav-link" href="{{ url('/admin/manage-job-domains') }}">Job Domain</a></li>
-			<li class="nav-item"> <a class="nav-link" href="{{ url('/admin/manage-notice-periods') }}">Notice Periods</a></li>
-			<li class="nav-item"> <a class="nav-link" href="{{ url('/admin/manage-fee-charge-reasons') }}">Fees charges reasons</a></li>
-			<li class="nav-item"> <a class="nav-link" href="{{ url('/admin/manage-working-days') }}">Working days</a></li>
-			<li class="nav-item"> <a class="nav-link" href="{{ url('/admin/manage-work-experiance') }}">Work experiance</a></li>
-		  </ul>
-		</div>
-	  </li>
-	  
-	  <li class="nav-item">
-		<a class="nav-link" data-toggle="collapse" href="#ui-location" aria-expanded="false" aria-controls="ui-location">
-		  <i class="typcn typcn-film menu-icon"></i>
-		  <span class="menu-title">Manage Location</span>
-		  <i class="menu-arrow"></i>
-		</a>
-		<div class="collapse" id="ui-location">
-		  <ul class="nav flex-column sub-menu">
-			<li class="nav-item"><a class="nav-link" href="{{ url('/admin/states') }}">Manage State</a></li>
-			<li class="nav-item"><a class="nav-link" href="{{ url('/admin/cities') }}">Manage City</a></li>
-		  </ul>
-		</div>
 	  </li>
 	  
 	  @if(session('login_user_data')[0]['role_id']==1)
@@ -264,32 +260,7 @@
 		  </ul>
 		</div>
 	  </li>
-	  @endif
-	  
-	  <li class="nav-item">
-		<a class="nav-link" href="{{ url('/admin/contact-us-emails') }}">
-		  <i class="typcn typcn-document-text menu-icon"></i>
-		  <span class="menu-title">Contact Message</span>
-		</a>
-	  </li>
-	  
-	  <li class="nav-item">
-		<a class="nav-link" data-toggle="collapse" href="#form-website" aria-expanded="false" aria-controls="form-website">
-		  <i class="typcn typcn-film menu-icon"></i>
-		  <span class="menu-title">Manage Website</span>
-		  <i class="menu-arrow"></i>
-		</a>
-		<div class="collapse" id="form-website">
-		  <ul class="nav flex-column sub-menu">
-			<li class="nav-item"><a class="nav-link" href="{{ url('/admin/about-us') }}">About Us</a></li>
-			<li class="nav-item"><a class="nav-link" href="{{ url('/admin/contact-us') }}">Contact Us</a></li>
-			<li class="nav-item"><a class="nav-link" href="{{ url('/admin/blog-lists') }}">Blog List</a></li>
-			<li class="nav-item"><a class="nav-link" href="{{ url('/admin/manage-blog-categories') }}">Blog Category</a></li>
-			<li class="nav-item"><a class="nav-link" href="{{ url('/admin/manage-blog-authors') }}">Blogs Author</a></li>
-		  </ul>
-		</div>
-	  </li>
-	  
+	  @endif	  
 	  
 	</ul>
 </nav>

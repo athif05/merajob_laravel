@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\AdminUser;
 use App\Role;
+use App\Blog;
+use App\BlogCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
@@ -220,4 +222,27 @@ class AdminUserController extends Controller
 		return back()->with('success', 'Account added successfully...');
 
 	}
+
+
+	/*show dashboard panel, start here*/
+	public function showDashboard(Request $request){
+
+		$totalBlogs=Blog::where('status', '1');
+		$total_blogs=$totalBlogs->count();
+
+		$totalBlogCategory=BlogCategory::where('status', '1');
+		$total_blog_Categories=$totalBlogCategory->count();
+
+		$latestBlogs = Blog::orderBy('blogs.id', 'DESC')
+			->leftJoin('authors', 'authors.id', '=', 'blogs.author_id')
+			->leftJoin('blog_categories', 'blog_categories.id', '=', 'blogs.blog_category_id')
+			->select('blogs.id as id', 'blogs.title', 'blogs.description', 'blogs.image','blogs.created_at as created_at', 'authors.name as author_name', 'blog_categories.name as category_name')
+			->offset(0)
+            ->limit(10)
+			->get();
+
+		return view('admin/dashboard', compact('total_blogs','total_blog_Categories','latestBlogs'));
+	}
+	/*show dashboard panel, end here*/
+
 }
